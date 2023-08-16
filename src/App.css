@@ -1,7 +1,6 @@
 #root {
   --primary: rgb(110, 140, 22);
   width: 100vw;
-  height: 100vh;
 }
 .logo {
   width: 50vw; /* Default width for small screens */
@@ -13,6 +12,7 @@
   display: grid;
   place-items: center;
   gap: 24px;
+  padding: 24px;
 }
 
 .flower {
