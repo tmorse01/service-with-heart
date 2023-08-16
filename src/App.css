@@ -20,3 +20,27 @@
   height: auto; /* Maintain aspect ratio */
   transition: width 0.3s ease-in-out; /* Smooth transition for width changes */
 }
+
+.about-page {
+  display: grid;
+  place-items: center;
+  gap: 24px;
+  padding: 24px;
+}
+
+.headshot {
+  width: 30vh; /* Default width for small screens */
+  height: auto; /* Maintain aspect ratio */
+  transition: width 0.3s ease-in-out; /* Smooth transition for width changes */
+  border-radius: 50%; /* This creates a circular shape */
+  object-fit: cover; /* Maintain the aspect ratio and cover the circle */
+}
+
+.bio-text {
+  max-width: 600px;
+  margin: 0 auto; /* Center the bio on the page */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  line-height: 1.6;
+}
