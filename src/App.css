@@ -4,28 +4,19 @@
   height: 100vh;
 }
 .logo {
-  width: 100px; /* Default width for small screens */
+  width: 50vw; /* Default width for small screens */
   height: auto; /* Maintain aspect ratio */
   transition: width 0.3s ease-in-out; /* Smooth transition for width changes */
 }
 
-/* Medium screen breakpoint */
-@media (min-width: 768px) {
-  .logo {
-    width: 150px;
-  }
+.home-page {
+  display: grid;
+  place-items: center;
+  gap: 24px;
 }
 
-/* Large screen breakpoint */
-@media (min-width: 1024px) {
-  .logo {
-    width: 200px;
-  }
-}
-
-/* Extra-large screen breakpoint */
-@media (min-width: 1200px) {
-  .logo {
-    width: 250px;
-  }
+.flower {
+  width: 60vh; /* Default width for small screens */
+  height: auto; /* Maintain aspect ratio */
+  transition: width 0.3s ease-in-out; /* Smooth transition for width changes */
 }

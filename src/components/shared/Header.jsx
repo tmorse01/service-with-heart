@@ -18,6 +18,15 @@ const Header = () => {
         <Link mr={4} href="/about">
           About
         </Link>
+        <Link mr={4} href="/testimonials">
+          Testimonials
+        </Link>
+        <Link mr={4} href="/testimonials">
+          IET
+        </Link>
+        <Link mr={4} href="/mexico">
+          Life in Mexio
+        </Link>
         <Link mr={4} href="/contact">
           Contact
         </Link>
