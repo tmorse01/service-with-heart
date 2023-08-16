@@ -15,6 +15,7 @@ import {
 } from "./components/pages/";
 
 import Footer from "./components/shared/Footer.jsx";
+import theme from "./theme.js";
 
 const router = createBrowserRouter([
   {
@@ -81,7 +82,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <RouterProvider router={router} />
     </ChakraProvider>
   </React.StrictMode>

@@ -8,13 +8,6 @@
   transition: width 0.3s ease-in-out; /* Smooth transition for width changes */
 }
 
-.home-page {
-  display: grid;
-  place-items: center;
-  gap: 24px;
-  padding: 24px;
-}
-
 .flower {
   width: 60vh; /* Default width for small screens */
   height: auto; /* Maintain aspect ratio */

@@ -1,38 +1,91 @@
 import React from "react";
-import { Box, Flex, Link, Text } from "@chakra-ui/react";
+import {
+  Heading,
+  Box,
+  Flex,
+  Link,
+  Text,
+  useTheme,
+  Spacer,
+} from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 const Header = () => {
+  const theme = useTheme();
+
   return (
-    <Flex
-      as="header"
-      align="center"
-      justify="space-between"
-      p={4}
-      bg="teal.500"
-      color="white"
-    >
-      <Link href="/" fontWeight="bold" fontSize="xl">
-        Service With Heart
-      </Link>
-      <Box>
-        <Link mr={4} href="/about">
-          About
-        </Link>
-        <Link mr={4} href="/testimonials">
-          Testimonials
-        </Link>
-        <Link mr={4} href="/testimonials">
-          IET
-        </Link>
-        <Link mr={4} href="/mexico">
-          Life in Mexio
-        </Link>
-        <Link mr={4} href="/contact">
-          Contact
-        </Link>
-      </Box>
-      <Text fontSize="2xl">332-849-4644</Text>
-    </Flex>
+    <Box bg="teal.500" color="white" py={4} px={8}>
+      <Flex align="center" justify="space-between" p={4} wrap="wrap">
+        <Heading as="h1" size="lg" color="white">
+          Service With Heart
+        </Heading>
+        <Spacer />
+        <Flex wrap="wrap" align="center">
+          <Link
+            as={RouterLink}
+            to="/"
+            color="white"
+            mr={4}
+            fontWeight="bold"
+            fontSize="xl"
+          >
+            Home
+          </Link>
+          <Link
+            as={RouterLink}
+            to="/about"
+            color="white"
+            mr={4}
+            fontWeight="bold"
+            fontSize="xl"
+          >
+            About
+          </Link>
+          <Link
+            as={RouterLink}
+            to="/testimonials"
+            color="white"
+            mr={4}
+            fontWeight="bold"
+            fontSize="xl"
+          >
+            Testimonials
+          </Link>
+          <Link
+            as={RouterLink}
+            to="/iet"
+            color="white"
+            mr={4}
+            fontWeight="bold"
+            fontSize="xl"
+          >
+            IET
+          </Link>
+          <Link
+            as={RouterLink}
+            to="/mexico"
+            color="white"
+            mr={4}
+            fontWeight="bold"
+            fontSize="xl"
+          >
+            Mexico
+          </Link>
+          <Link
+            as={RouterLink}
+            to="/conact"
+            color="white"
+            mr={4}
+            fontWeight="bold"
+            fontSize="xl"
+          >
+            Contact
+          </Link>
+        </Flex>
+        <Spacer />
+        <Text fontSize="2xl">332-849-4644</Text>
+      </Flex>
+    </Box>
   );
 };
 
