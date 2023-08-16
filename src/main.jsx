@@ -5,8 +5,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Header from "./components/shared/Header.jsx";
 import "./index.css";
-import Home from "./components/pages/Home.jsx";
-import About from "./components/pages/About.jsx";
+import {
+  Home,
+  About,
+  Testimonials,
+  Contact,
+  IET,
+  Mexico,
+} from "./components/pages/";
 
 import Footer from "./components/shared/Footer.jsx";
 
@@ -27,6 +33,46 @@ const router = createBrowserRouter([
       <>
         <Header />
         <About />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/testimonials",
+    element: (
+      <>
+        <Header />
+        <Testimonials />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/iet",
+    element: (
+      <>
+        <Header />
+        <IET />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/mexico",
+    element: (
+      <>
+        <Header />
+        <Mexico />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/contact",
+    element: (
+      <>
+        <Header />
+        <Contact />
         <Footer />
       </>
     ),

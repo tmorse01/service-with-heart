@@ -2,9 +2,7 @@ import React from "react";
 import { Divider, Heading, Text } from "@chakra-ui/react";
 import MeredithHeadshot from "../../assets/MeredithHeadshot.jpg";
 import "./../../App.css";
-import { useNavigate } from "react-router-dom";
 const About = () => {
-  const navigate = useNavigate();
   return (
     <div className="about-page">
       <Heading as="h1" size="4xl">
