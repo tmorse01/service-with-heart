@@ -37,14 +37,14 @@ const Home = () => {
           objectFit="cover"
           objectPosition="center"
           width={{ base: "200px", md: "300px", lg: "500px" }}
-          src={`../../public/assets/Heart_logo.jpg`}
+          src={"src/assets/Heart_logo.jpg"}
           alt="Heart Logo"
         />
         <Image
           objectFit="cover"
           objectPosition="center"
           width={{ base: "400px", md: "600px", lg: "800px" }}
-          src={`../../public/assets/purpleflower.jpg`}
+          src={"src/assets/purpleflower.jpg"}
           alt="Purple Flower"
         />
       </Flex>

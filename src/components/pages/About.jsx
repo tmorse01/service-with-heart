@@ -19,7 +19,7 @@ const About = () => {
           objectPosition="center"
           borderRadius="full"
           width={{ base: "200px", md: "300px", lg: "400px" }}
-          src={`../../public/assets/MeredithHeadshot.jpg`}
+          src={"src/assets/MeredithHeadshot.jpg"}
           alt="Headshot"
         />
         <Heading as="h3" size="xl">

@@ -54,7 +54,7 @@ const IET = () => {
         </Box>
         <Box p={[4, 4, 8]} width={["100%", "100%", "50%"]}>
           <Image
-            src={`../../public/assets/green_candles.jpg`}
+            src={"src/assets/green_candles.jpg"}
             alt="Green candles"
             objectFit="cover"
             borderRadius="md"
