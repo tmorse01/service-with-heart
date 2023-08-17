@@ -28,7 +28,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
-            _hover={{ color: "blue.300" }}
+            _hover={{ color: "blue.200" }}
           >
             Home
           </Link>
@@ -39,7 +39,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
-            _hover={{ color: "blue.300" }}
+            _hover={{ color: "blue.200" }}
           >
             About
           </Link>
@@ -50,7 +50,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
-            _hover={{ color: "blue.300" }}
+            _hover={{ color: "blue.200" }}
           >
             Testimonials
           </Link>
@@ -61,7 +61,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
-            _hover={{ color: "blue.300" }}
+            _hover={{ color: "blue.200" }}
           >
             IET
           </Link>
@@ -72,7 +72,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
-            _hover={{ color: "blue.300" }}
+            _hover={{ color: "blue.200" }}
           >
             Mexico
           </Link>
@@ -83,7 +83,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
-            _hover={{ color: "blue.300" }}
+            _hover={{ color: "blue.200" }}
           >
             Contact
           </Link>

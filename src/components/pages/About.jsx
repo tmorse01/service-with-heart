@@ -6,7 +6,6 @@ const About = () => {
   return (
     <Box p={10}>
       <Flex
-        className="about-page"
         direction="column"
         alignItems="center"
         justifyContent="center"
