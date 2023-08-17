@@ -8,6 +8,8 @@ import {
   useTheme,
   Spacer,
 } from "@chakra-ui/react";
+import { PhoneIcon } from "@chakra-ui/icons";
+
 import { Link as RouterLink } from "react-router-dom";
 
 const Header = () => {
@@ -78,7 +80,7 @@ const Header = () => {
           </Link>
           <Link
             as={RouterLink}
-            to="/conact"
+            to="/contact"
             color="white"
             mr={4}
             fontWeight="bold"
@@ -89,9 +91,16 @@ const Header = () => {
           </Link>
         </Flex>
         <Spacer />
-        <Text fontSize="2xl" color="gray.800">
-          332-849-4644
-        </Text>
+        <Flex
+          fontSize={"2xl"}
+          direction="row"
+          color="gray.800"
+          gap={2}
+          align="center"
+        >
+          <PhoneIcon />
+          <Text>332-849-4644</Text>
+        </Flex>
       </Flex>
     </Box>
   );

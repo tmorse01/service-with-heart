@@ -4,7 +4,7 @@ import MeredithHeadshot from "../../assets/MeredithHeadshot.jpg";
 import "./../../App.css";
 const About = () => {
   return (
-    <Box p={10}>
+    <Box p={[8, 8, 24]}>
       <Flex
         direction="column"
         alignItems="center"

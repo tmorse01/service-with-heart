@@ -11,7 +11,7 @@ import {
 import GreenCandles from "../../assets/green_candles.jpg";
 const IET = () => {
   return (
-    <Box p={10}>
+    <Box p={[8, 8, 24]}>
       <Stack
         direction={["column", "column", "row"]} // Stacks boxes on small screens, displays side by side on larger screens
         spacing={[4, 4, 8]} // Adjust spacing between stacked boxes or side by side boxes

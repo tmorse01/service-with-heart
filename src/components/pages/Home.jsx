@@ -14,10 +14,9 @@ import "./../../App.css";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
-  const theme = useTheme();
 
   return (
-    <Box p={10}>
+    <Box p={[8, 8, 24]}>
       <Flex
         direction="column"
         alignItems="center"
