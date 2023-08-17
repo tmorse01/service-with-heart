@@ -8,7 +8,7 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import GreenCandles from "../../assets/green_candles.jpg";
+import GreenCandles from "@/assets/green_candles.jpg";
 const IET = () => {
   return (
     <Box p={[8, 8, 24]}>
