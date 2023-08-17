@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Flex, Divider, Heading, Text } from "@chakra-ui/react";
-import MeredithHeadshot from "@/assets/MeredithHeadshot.jpg";
+import MeredithHeadshot from "../../assets/MeredithHeadshot.jpg";
 import "./../../App.css";
 const About = () => {
   return (
