@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Flex, Divider, Heading, Text } from "@chakra-ui/react";
-import MeredithHeadshot from "../../assets/MeredithHeadshot.jpg";
+import { Box, Flex, Divider, Heading, Text, Image } from "@chakra-ui/react";
 import "./../../App.css";
 const About = () => {
   return (
@@ -15,7 +14,14 @@ const About = () => {
           About Meredith
         </Heading>
         <Divider />
-        <img className="headshot" src={MeredithHeadshot} alt="Headshot" />
+        <Image
+          objectFit="cover"
+          objectPosition="center"
+          borderRadius="full"
+          width={{ base: "200px", md: "300px", lg: "400px" }}
+          src={`../../public/assets/MeredithHeadshot.jpg`}
+          alt="Headshot"
+        />
         <Heading as="h3" size="xl">
           Rev. Meredith Ann Murray Bio
         </Heading>

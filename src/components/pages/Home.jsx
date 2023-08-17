@@ -1,12 +1,9 @@
 import React from "react";
 import { Box, Flex, Button, Heading, Image, Stack } from "@chakra-ui/react";
-import HeartLogo from "../../assets/Heart_logo.jpg";
-import PurpleFlower from "../../assets/purpleflower.jpg";
 import "./../../App.css";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
-
   return (
     <Box p={[8, 8, 24]}>
       <Flex
@@ -40,14 +37,14 @@ const Home = () => {
           objectFit="cover"
           objectPosition="center"
           width={{ base: "200px", md: "300px", lg: "500px" }}
-          src={HeartLogo}
+          src={`../../public/assets/Heart_logo.jpg`}
           alt="Heart Logo"
         />
         <Image
           objectFit="cover"
           objectPosition="center"
           width={{ base: "400px", md: "600px", lg: "800px" }}
-          src={PurpleFlower}
+          src={`../../public/assets/purpleflower.jpg`}
           alt="Purple Flower"
         />
       </Flex>

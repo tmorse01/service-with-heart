@@ -8,7 +8,6 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
-import GreenCandles from "../../assets/green_candles.jpg";
 const IET = () => {
   return (
     <Box p={[8, 8, 24]}>
@@ -55,7 +54,7 @@ const IET = () => {
         </Box>
         <Box p={[4, 4, 8]} width={["100%", "100%", "50%"]}>
           <Image
-            src={GreenCandles}
+            src={`../../public/assets/green_candles.jpg`}
             alt="Green candles"
             objectFit="cover"
             borderRadius="md"
