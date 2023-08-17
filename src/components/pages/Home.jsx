@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Flex, Button, Heading, Image, Stack } from "@chakra-ui/react";
-import HeartLogo from "@assets/Heart_logo.jpg";
-import PurpleFlower from "@assets/purpleflower.jpg";
+import HeartLogo from "@/assets/Heart_logo.jpg";
+import PurpleFlower from "@/assets/purpleflower.jpg";
 import "./../../App.css";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
