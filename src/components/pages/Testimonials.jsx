@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Stack, Heading, Divider } from "@chakra-ui/react";
+import { Box, Flex, Stack, Heading, Divider } from "@chakra-ui/react";
 import Testimonial from "../shared/Testimonial";
 import "./../../App.css";
 
@@ -40,24 +40,30 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <Flex
-      className="testimonials-page"
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      gap={6}
-    >
-      <Heading as="h2" size="3xl">
-        Client Testimonials
-      </Heading>
-      <Divider />
-      &nbsp;
-      <Stack spacing={4} direction="row" flexWrap="wrap">
-        {testimonials.map((item) => (
-          <Testimonial name={item.name} text={item.text} />
-        ))}
-      </Stack>
-    </Flex>
+    <Box p={10}>
+      <Flex
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        gap={6}
+      >
+        <Heading as="h2" size="3xl">
+          Client Testimonials
+        </Heading>
+        <Divider />
+        <Stack
+          spacing={4}
+          direction="row"
+          flexWrap="wrap"
+          align="center"
+          justify="center"
+        >
+          {testimonials.map((item) => (
+            <Testimonial name={item.name} text={item.text} />
+          ))}
+        </Stack>
+      </Flex>
+    </Box>
   );
 };
 export default Testimonials;
