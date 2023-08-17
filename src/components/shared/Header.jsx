@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <Box bg="teal.500" color="white" py={4} px={8}>
       <Flex align="center" justify="space-between" p={4} wrap="wrap">
-        <Heading as="h1" size="lg" color="white">
+        <Heading as="h1" size="lg" color="gray.800">
           Service With Heart
         </Heading>
         <Spacer />
@@ -28,6 +28,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
+            _hover={{ color: "blue.300" }}
           >
             Home
           </Link>
@@ -38,6 +39,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
+            _hover={{ color: "blue.300" }}
           >
             About
           </Link>
@@ -48,6 +50,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
+            _hover={{ color: "blue.300" }}
           >
             Testimonials
           </Link>
@@ -58,6 +61,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
+            _hover={{ color: "blue.300" }}
           >
             IET
           </Link>
@@ -68,6 +72,7 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
+            _hover={{ color: "blue.300" }}
           >
             Mexico
           </Link>
@@ -78,12 +83,15 @@ const Header = () => {
             mr={4}
             fontWeight="bold"
             fontSize="xl"
+            _hover={{ color: "blue.300" }}
           >
             Contact
           </Link>
         </Flex>
         <Spacer />
-        <Text fontSize="2xl">332-849-4644</Text>
+        <Text fontSize="2xl" color="gray.800">
+          332-849-4644
+        </Text>
       </Flex>
     </Box>
   );

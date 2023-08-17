@@ -21,6 +21,13 @@
   padding: 24px;
 }
 
+.testimonials-page {
+  display: grid;
+  place-items: center;
+  gap: 24px;
+  padding: 24px;
+}
+
 .headshot {
   width: 30vh; /* Default width for small screens */
   height: auto; /* Maintain aspect ratio */

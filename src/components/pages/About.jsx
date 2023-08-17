@@ -1,10 +1,16 @@
 import React from "react";
-import { Divider, Heading, Text } from "@chakra-ui/react";
+import { Flex, Divider, Heading, Text } from "@chakra-ui/react";
 import MeredithHeadshot from "../../assets/MeredithHeadshot.jpg";
 import "./../../App.css";
 const About = () => {
   return (
-    <div className="about-page">
+    <Flex
+      className="about-page"
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      gap={6}
+    >
       <Heading as="h1" size="4xl">
         About Meredith
       </Heading>
@@ -42,7 +48,7 @@ const About = () => {
         community volunteering and promoting world peace -- mainly through inner
         peace.
       </Text>
-    </div>
+    </Flex>
   );
 };
 
