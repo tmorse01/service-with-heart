@@ -58,6 +58,9 @@ const Contact = () => {
           Hours
         </Heading>
         <Text>Monday - Sunday: 9am - 9pm</Text>
+        <Heading as="h5" size="sm">
+          332-849-4644 for texts (only) and for use with WhatsApp
+        </Heading>
         <Box width={{ base: "100%", lg: "400px" }}>
           <Formik
             initialValues={initialValues}
