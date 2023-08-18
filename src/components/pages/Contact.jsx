@@ -114,13 +114,18 @@ const Contact = () => {
       </Flex>
       <Flex mt={8} justifyContent="center">
         {/* Social Links */}
-        <Link mx={2} href="https://www.facebook.com/" target="_blank">
+        <Link
+          mx={2}
+          href="https://www.facebook.com/Spirit.Song.Ministry"
+          target="_blank"
+        >
           <Icon as={FaFacebookF} boxSize={6} />
         </Link>
-        <Link mx={2} href="https://www.instagram.com/" target="_blank">
-          <Icon as={FaInstagram} boxSize={6} />
-        </Link>
-        <Link mx={2} href="https://www.linkedin.com/" target="_blank">
+        <Link
+          mx={2}
+          href="https://www.linkedin.com/in/servicewithheart/"
+          target="_blank"
+        >
           <Icon as={FaLinkedinIn} boxSize={6} />
         </Link>
       </Flex>
