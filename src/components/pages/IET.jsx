@@ -43,12 +43,20 @@ const IET = () => {
               What is an IET Session?
             </Heading>
             <Text>
-              " Integrated Energy Therapy® (IET) sessions use angelic energy to
+              <strong>
+                Meredith conducts all of the IET sessions remotely. You are
+                invited to rest undisturbed for 45 minutes to 1 hour in the
+                comfort of your own home while Meredith connects with the Angels
+                from her home office.
+              </strong>
+            </Text>
+            <Text>
+              Integrated Energy Therapy® (IET) sessions use angelic energy to
               work directly with your body’s cellular memory and energy field to
               get the 'issues out of your tissues' for good. IET helps you to
               safely and gently release limiting energy patterns from your past,
               empower and balance your life in the present, and embody your full
-              potential as you move into your future. "
+              potential as you move into your future.
             </Text>
           </Stack>
         </Box>
