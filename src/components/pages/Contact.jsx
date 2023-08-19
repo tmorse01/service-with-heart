@@ -18,6 +18,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const initialValues = {
@@ -38,6 +39,23 @@ const Contact = () => {
     // Simulate API call here
     console.log(values);
     actions.setSubmitting(false);
+    // send email
+    console.log(import.meta.env);
+    emailjs
+      .send(
+        import.meta.env.VITE_REACT_APP_EMAILJS_SERVICEID,
+        import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATEID,
+        values,
+        import.meta.env.VITE_REACT_APP_EMAILJS_PUBLICKEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
