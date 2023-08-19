@@ -12,15 +12,18 @@ import {
   Link,
   Icon,
   Stack,
+  useToast,
 } from "@chakra-ui/react";
 import { EmailIcon } from "@chakra-ui/icons";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const toast = useToast();
+
   const initialValues = {
     name: "",
     email: "",
@@ -48,9 +51,23 @@ const Contact = () => {
       .then(
         (result) => {
           console.log(result.text);
+          toast({
+            title: "Form Submitted",
+            description: "Your contact form has been submitted successfully.",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
         },
         (error) => {
           console.error(error.text);
+          toast({
+            title: "Error",
+            description: "There was an error submitting the form.",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
         }
       );
   };
@@ -82,46 +99,70 @@ const Contact = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ isSubmitting }) => (
+            {(formikProps) => (
               <Form>
-                <Stack>
-                  <FormControl id="name" mb={4}>
-                    <FormLabel>Name</FormLabel>
-                    <Input as={Field} name="name" placeholder="Name" />
-                  </FormControl>
-                  <FormControl id="email" mb={4}>
-                    <FormLabel>Email</FormLabel>
-                    <Input
-                      as={Field}
-                      name="email"
-                      type="email"
-                      placeholder="Email"
-                    />
-                  </FormControl>
-                  <FormControl id="phoneNumber" mb={4}>
-                    <FormLabel>Phone Number</FormLabel>
-                    <Input
-                      as={Field}
-                      name="phoneNumber"
-                      type="tel"
-                      placeholder="Phone Number"
-                    />
-                  </FormControl>
-                  <FormControl id="message" mb={4}>
-                    <FormLabel>Message</FormLabel>
-                    <Textarea as={Field} name="message" placeholder="Message" />
-                  </FormControl>
+                <Field name="name">
+                  {({ field, form }) => (
+                    <FormControl
+                      id="name"
+                      isRequired
+                      isInvalid={form.errors.name && form.touched.name}
+                    >
+                      <FormLabel>Name</FormLabel>
+                      <Input {...field} />
+                    </FormControl>
+                  )}
+                </Field>
 
-                  <Button
-                    mt={4}
-                    colorScheme="teal"
-                    type="submit"
-                    isLoading={isSubmitting}
-                    leftIcon={<EmailIcon />}
-                  >
-                    Send Message
-                  </Button>
-                </Stack>
+                <Field name="email">
+                  {({ field, form }) => (
+                    <FormControl
+                      id="email"
+                      isRequired
+                      isInvalid={form.errors.email && form.touched.email}
+                    >
+                      <FormLabel>Email</FormLabel>
+                      <Input type="email" {...field} />
+                    </FormControl>
+                  )}
+                </Field>
+
+                <Field name="phoneNumber">
+                  {({ field, form }) => (
+                    <FormControl
+                      id="phoneNumber"
+                      isRequired
+                      isInvalid={
+                        form.errors.phoneNumber && form.touched.phoneNumber
+                      }
+                    >
+                      <FormLabel>Phone Number</FormLabel>
+                      <Input type="tel" {...field} />
+                    </FormControl>
+                  )}
+                </Field>
+
+                <Field name="message">
+                  {({ field, form }) => (
+                    <FormControl
+                      id="message"
+                      isRequired
+                      isInvalid={form.errors.message && form.touched.message}
+                    >
+                      <FormLabel>Message</FormLabel>
+                      <Textarea {...field} />
+                    </FormControl>
+                  )}
+                </Field>
+
+                <Button
+                  type="submit"
+                  mt={4}
+                  colorScheme="teal"
+                  isLoading={formikProps.isSubmitting}
+                >
+                  Submit
+                </Button>
               </Form>
             )}
           </Formik>
