@@ -37,10 +37,8 @@ const Contact = () => {
 
   const handleSubmit = async (values, actions) => {
     // Simulate API call here
-    console.log(values);
     actions.setSubmitting(false);
     // send email
-    console.log(import.meta.env);
     emailjs
       .send(
         import.meta.env.VITE_REACT_APP_EMAILJS_SERVICEID,
@@ -53,7 +51,7 @@ const Contact = () => {
           console.log(result.text);
         },
         (error) => {
-          console.log(error.text);
+          console.error(error.text);
         }
       );
   };
