@@ -36,7 +36,6 @@ const Contact = () => {
   });
 
   const handleSubmit = async (values, actions) => {
-    // Simulate API call here
     actions.setSubmitting(false);
     // send email
     emailjs
