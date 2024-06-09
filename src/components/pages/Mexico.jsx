@@ -1,13 +1,40 @@
 /* eslint-disable react/no-unknown-property */
-import { Heading, Flex, Box, Stack } from "@chakra-ui/react";
+import {
+  Heading,
+  Flex,
+  Box,
+  Stack,
+  Text,
+  Divider,
+  Grid,
+  GridItem,
+} from "@chakra-ui/react";
 const Mexico = () => {
   return (
     <Box p={[8, 8, 24]} align="center">
       <Heading as="h2" size="2xl" marginBottom="1rem">
-        Learn more about Meredith’s life in Mexico
+        Learn more about life in Mexico
       </Heading>
-      <Heading as="h3" size="1xl" marginBottom="1rem">
-        (full time since May 2020) in the videos below
+      <Grid templateColumns="repeat(2, 1fr)">
+        <GridItem colSpan={1}>
+          <Text>
+            Meredith offers one FREE 15-minute phone call to connect with you
+            and answer some of your questions using her own experiences from
+            living in Mexico since May, 2020.
+          </Text>
+        </GridItem>
+        <GridItem colSpan={1}>
+          <Text>
+            If that time is insufficient, she will schedule up to a one-hour
+            long conversation with you for $55 U.S. (payable in advance on
+            PayPal.) Make a list of your questions prior to connecting to make
+            the best use of your time together. Viva Mexico!
+          </Text>
+        </GridItem>
+      </Grid>
+      <Divider marginTop="1em" marginBottom="1rem" />
+      <Heading as="h3" size="2xl" marginBottom="1rem">
+        Videos
       </Heading>
       <Stack spacing={[4, 4, 8]}>
         <Heading as="h4" size="md">
