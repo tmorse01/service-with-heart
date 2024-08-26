@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Flex, Stack, Heading, Divider } from "@chakra-ui/react";
 import Testimonial from "../shared/Testimonial";
 import "./../../App.css";
@@ -36,6 +35,10 @@ const testimonials = [
     name: "Darcy H.",
     text: "Reverend Meredith is a generous, caring, all-inclusive woman healer, who is in touch with the divine. She performed a healing session with me that was so relaxing, introspective and comfortable that I was able to go deep within my being to connect with my spiritual self. At the end she provided me with Archangel Cards to pick from  and it  told me that the Angel had a message for me about my life’s purpose.",
   },
+  {
+    name: "Adam W.",
+    text: "Your Angel Sessions feel very egalitarian to me. You are clear about what you are inviting me to do and you are open about how you work, which has allowed me to make an informed decision about your invitation. The Angel Sessions have been congruent with what you said you are offering, which feels great! The words transparent and consensual come to mind.   All of these things set an emotional tone of reliable goodwill which I easily relax into at the start of each session and which gives me an unguarded openness within to what takes place during the session. The sessions themselves have been fruitful in palpable ways that have improved my life. While our working agreements are clear, the process is mysterious in ways that feel nurturing and life-affirming. Working with you, Meredith, I know I am in skillful hands and collaborating with an ethical person. You and your Angel Sessions are a welcome blessing in my life. That such work can take place remotely amazes me. Thank you for our sessions.",
+  },
 ];
 
 const Testimonials = () => {
@@ -58,8 +61,8 @@ const Testimonials = () => {
           align="center"
           justify="center"
         >
-          {testimonials.map((item) => (
-            <Testimonial name={item.name} text={item.text} />
+          {testimonials.map((item, index) => (
+            <Testimonial key={index} name={item.name} text={item.text} />
           ))}
         </Stack>
       </Flex>
