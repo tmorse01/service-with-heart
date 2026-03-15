@@ -39,7 +39,7 @@ const Home = () => {
       <Box
         position="relative"
         minH={{ base: "50vh", md: "60vh" }}
-        backgroundImage="url(/meredith-vortex.jpeg)"
+        backgroundImage="url(/lake.jpeg)"
         backgroundSize="cover"
         backgroundPosition="center"
         display="flex"
@@ -69,56 +69,56 @@ const Home = () => {
           variants={heroStagger}
         >
           <MotionBox variants={fadeUp} transition={sectionTransition}>
-          <Heading
-            as="h1"
-            size={{ base: "2xl", md: "3xl" }}
-            textShadow="0 1px 3px rgba(0,0,0,0.5)"
-          >
-            Rev. Meredith Ann Murray
-          </Heading>
-          </MotionBox>
-          <MotionBox variants={fadeUp} transition={sectionTransition}>
-          <Text fontSize={{ base: "md", md: "lg" }} opacity={0.95}>
-            Welcome!
-          </Text>
-          </MotionBox>
-          <MotionBox variants={fadeUp} transition={sectionTransition}>
-          <Heading
-            as="h2"
-            size={{ base: "md", md: "lg" }}
-            fontWeight="medium"
-            textShadow="0 1px 2px rgba(0,0,0,0.5)"
-          >
-            Integrated Energy Therapy Advanced Level Practitioner
-          </Heading>
-          </MotionBox>
-          <MotionBox variants={fadeUp} transition={sectionTransition}>
-          <Stack
-            direction={{ base: "column", sm: "row" }}
-            spacing={4}
-            align="center"
-          >
-            <Button
-              colorPalette="tealPrimary"
-              size="lg"
-              onClick={() => navigate("/contact")}
-              _hover={{ transform: "translateY(-1px)" }}
-              transition="transform 0.2s"
+            <Heading
+              as="h1"
+              size={{ base: "2xl", md: "3xl" }}
+              textShadow="0 1px 3px rgba(0,0,0,0.5)"
             >
-              Schedule an Appointment
-            </Button>
-            <Button
-              colorPalette="tealPrimary"
-              variant="outline"
-              size="lg"
-              borderColor="fg.inverted"
-              color="fg.inverted"
-              _hover={{ bg: "whiteAlpha.300" }}
-              onClick={() => navigate("/iet")}
+              Rev. Meredith Ann Murray
+            </Heading>
+          </MotionBox>
+          <MotionBox variants={fadeUp} transition={sectionTransition}>
+            <Text fontSize={{ base: "md", md: "lg" }} opacity={0.95}>
+              Welcome!
+            </Text>
+          </MotionBox>
+          <MotionBox variants={fadeUp} transition={sectionTransition}>
+            <Heading
+              as="h2"
+              size={{ base: "md", md: "lg" }}
+              fontWeight="medium"
+              textShadow="0 1px 2px rgba(0,0,0,0.5)"
             >
-              Find Out More
-            </Button>
-          </Stack>
+              Integrated Energy Therapy Advanced Level Practitioner
+            </Heading>
+          </MotionBox>
+          <MotionBox variants={fadeUp} transition={sectionTransition}>
+            <Stack
+              direction={{ base: "column", sm: "row" }}
+              spacing={4}
+              align="center"
+            >
+              <Button
+                colorPalette="tealPrimary"
+                size="lg"
+                onClick={() => navigate("/contact")}
+                _hover={{ transform: "translateY(-1px)" }}
+                transition="transform 0.2s"
+              >
+                Schedule an Appointment
+              </Button>
+              <Button
+                colorPalette="tealPrimary"
+                variant="outline"
+                size="lg"
+                borderColor="fg.inverted"
+                color="fg.inverted"
+                _hover={{ bg: "whiteAlpha.300" }}
+                onClick={() => navigate("/iet")}
+              >
+                Find Out More
+              </Button>
+            </Stack>
           </MotionBox>
         </MotionFlex>
       </Box>
@@ -126,12 +126,7 @@ const Home = () => {
       {/* 2. Intro — Logo + Welcome */}
       <Box py={{ base: 8, md: 10 }} px={{ base: 4, md: 6 }} bg="bg.subtle">
         <Container maxW="container.lg">
-          <Flex
-            direction="column"
-            align="center"
-            textAlign="center"
-            gap={4}
-          >
+          <Flex direction="column" align="center" textAlign="center" gap={4}>
             <Box>
               <Image
                 fit="contain"
@@ -180,8 +175,8 @@ const Home = () => {
                 boxShadow="md"
               >
                 <Image
-                  src="/meredith-big-tree.jpeg"
-                  alt="Meredith in nature"
+                  src="/meredith-vortex.jpeg"
+                  alt="Meredith at the Saint Germaine vortex"
                   fit="cover"
                   align="center"
                 />
@@ -236,8 +231,8 @@ const Home = () => {
                 boxShadow="md"
               >
                 <Image
-                  src="/vortex1.jpeg"
-                  alt="Peaceful garden"
+                  src="/IETlogo-final.jpg"
+                  alt="Integrated Energy Therapy logo"
                   fit="cover"
                   align="center"
                 />
@@ -309,7 +304,9 @@ const Home = () => {
                   <Testimonial
                     name={item.name}
                     text={item.text}
-                    colorPalette={AVATAR_PALETTES[index % AVATAR_PALETTES.length]}
+                    colorPalette={
+                      AVATAR_PALETTES[index % AVATAR_PALETTES.length]
+                    }
                   />
                 </MotionBox>
               ))}
@@ -350,8 +347,8 @@ const Home = () => {
                 boxShadow="md"
               >
                 <Image
-                  src="/Poncitlan.jpeg"
-                  alt="Poncitlan, Mexico"
+                  src="/ajijic.jpeg"
+                  alt="Ajijic, Mexico"
                   fit="cover"
                   align="center"
                 />

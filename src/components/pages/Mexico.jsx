@@ -14,28 +14,30 @@ import { forwardRef } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 const INTRO_PHOTOS = [
-  { src: "/Poncitlan.jpeg", alt: "View of Poncitlan, Mexico" },
+  { src: "/ajijic.jpeg", alt: "View of Ajijic, Mexico" },
   { src: "/meredith-big-tree.jpeg", alt: "Meredith by a large tree" },
 ];
 
-const CAROUSEL_SLIDES = [
+const VORTEX_SLIDES = [
   {
     src: "/meredith-vortex.jpeg",
     alt: "Meredith at the Saint Germaine vortex",
   },
-  { src: "/lunch.jpeg", alt: "Lunch on the north shore of Lake Chapala" },
   { src: "/vortex1.jpeg", alt: "Saint Germaine vortex" },
   { src: "/vortex2.jpeg", alt: "Saint Germaine vortex" },
   { src: "/vortex3.jpeg", alt: "Saint Germaine vortex" },
   { src: "/vortex4.jpeg", alt: "Saint Germaine vortex" },
   { src: "/vortex5.jpeg", alt: "Saint Germaine vortex" },
-  { src: "/castle.jpg.jpeg", alt: "Castle on Lake Chapala" },
-  { src: "/castle1.jpeg", alt: "Castle on the north shore" },
-  { src: "/castle2.jpeg", alt: "Castle on Lake Chapala" },
-  { src: "/castle3.jpeg", alt: "Castle on the north shore" },
+];
+
+const AJIJIC_SLIDES = [
+  { src: "/ajijic.jpeg", alt: "Ajijic on the north shore of Lake Chapala" },
+  { src: "/meredith-big-tree.jpeg", alt: "Meredith by a large tree" },
   { src: "/garden.jpeg", alt: "Garden on the north shore" },
   { src: "/garden-gnomes.jpeg", alt: "Garden with gnomes" },
   { src: "/gnome.jpeg", alt: "Garden gnome" },
+  { src: "/lunch.jpeg", alt: "Lunch on the north shore of Lake Chapala" },
+  { src: "/Poncitlan.jpeg", alt: "Poncitlan area" },
 ];
 
 const CarouselActionButton = forwardRef(function CarouselActionButton(
@@ -146,22 +148,28 @@ const Mexico = () => {
 
       <Separator marginTop="2rem" marginBottom="1rem" />
 
+      <Heading as="h2" size="lg" marginBottom={4}>
+        Saint Germaine vortex
+      </Heading>
       <Carousel.Root
-        slideCount={CAROUSEL_SLIDES.length}
+        slideCount={VORTEX_SLIDES.length}
         maxW="4xl"
         mx="auto"
-        mb={4}
+        mb={8}
         position="relative"
       >
         <Carousel.Control gap="4" width="full" position="relative">
           <Carousel.PrevTrigger asChild>
-            <CarouselActionButton insetStart="4" aria-label="Previous image">
+            <CarouselActionButton
+              insetStart="4"
+              aria-label="Previous vortex image"
+            >
               <LuChevronLeft />
             </CarouselActionButton>
           </Carousel.PrevTrigger>
 
           <Carousel.ItemGroup width="full">
-            {CAROUSEL_SLIDES.map((slide, index) => (
+            {VORTEX_SLIDES.map((slide, index) => (
               <Carousel.Item key={slide.src} index={index}>
                 <AspectRatio
                   ratio={{ base: 2 / 1, md: 16 / 9 }}
@@ -182,7 +190,7 @@ const Mexico = () => {
           </Carousel.ItemGroup>
 
           <Carousel.NextTrigger asChild>
-            <CarouselActionButton insetEnd="4" aria-label="Next image">
+            <CarouselActionButton insetEnd="4" aria-label="Next vortex image">
               <LuChevronRight />
             </CarouselActionButton>
           </Carousel.NextTrigger>
@@ -197,7 +205,92 @@ const Mexico = () => {
             mx="auto"
             display="flex"
           >
-            {CAROUSEL_SLIDES.map((slide, index) => (
+            {VORTEX_SLIDES.map((slide, index) => (
+              <Carousel.Indicator
+                key={slide.src}
+                index={index}
+                unstyled
+                flexShrink={0}
+                _current={{
+                  outline: "2px solid",
+                  outlineColor: "colorPalette.subtle",
+                  outlineOffset: "2px",
+                }}
+              >
+                <Image
+                  w="20"
+                  aspectRatio="16/9"
+                  src={slide.src}
+                  alt={slide.alt}
+                  fit="cover"
+                  borderRadius="md"
+                />
+              </Carousel.Indicator>
+            ))}
+          </Carousel.IndicatorGroup>
+        </Box>
+      </Carousel.Root>
+
+      <Separator marginTop="2rem" marginBottom="1rem" />
+
+      <Heading as="h2" size="lg" marginBottom={4}>
+        Life in Ajijic
+      </Heading>
+      <Carousel.Root
+        slideCount={AJIJIC_SLIDES.length}
+        maxW="4xl"
+        mx="auto"
+        mb={8}
+        position="relative"
+      >
+        <Carousel.Control gap="4" width="full" position="relative">
+          <Carousel.PrevTrigger asChild>
+            <CarouselActionButton
+              insetStart="4"
+              aria-label="Previous Ajijic image"
+            >
+              <LuChevronLeft />
+            </CarouselActionButton>
+          </Carousel.PrevTrigger>
+
+          <Carousel.ItemGroup width="full">
+            {AJIJIC_SLIDES.map((slide, index) => (
+              <Carousel.Item key={slide.src} index={index}>
+                <AspectRatio
+                  ratio={{ base: 2 / 1, md: 16 / 9 }}
+                  overflow="hidden"
+                  borderRadius="lg"
+                  boxShadow="md"
+                  width="100%"
+                >
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fit="cover"
+                    align="center"
+                  />
+                </AspectRatio>
+              </Carousel.Item>
+            ))}
+          </Carousel.ItemGroup>
+
+          <Carousel.NextTrigger asChild>
+            <CarouselActionButton insetEnd="4" aria-label="Next Ajijic image">
+              <LuChevronRight />
+            </CarouselActionButton>
+          </Carousel.NextTrigger>
+        </Carousel.Control>
+
+        <Box mt={3} overflowX="auto" maxW="full">
+          <Carousel.IndicatorGroup
+            gap={2}
+            justifyContent="center"
+            flexWrap="nowrap"
+            maxW="27rem"
+            mx="auto"
+            display="flex"
+          >
+            {AJIJIC_SLIDES.map((slide, index) => (
               <Carousel.Indicator
                 key={slide.src}
                 index={index}
@@ -238,7 +331,7 @@ const Mexico = () => {
           </Heading>
           <Text lineHeight="tall" color="fg.muted">
             Meredith leads tours to the Saint Germaine vortex in the Lake
-            Chapala area. The gallery above includes photos from the vortex—a
+            Chapala area. The carousel above includes photos from the vortex—a
             powerful spot for energy work and reflection.
           </Text>
         </Box>
@@ -248,7 +341,7 @@ const Mexico = () => {
           </Heading>
           <Text lineHeight="tall" color="fg.muted">
             Meredith has called Ajijic, on the north shore of Lake Chapala, home
-            since May 2020. She loves sharing what daily life is like here—the
+            since May 2020. The carousel above shows daily life here—the
             community, the climate, and the chance to slow down and enjoy
             Mexico.
           </Text>
@@ -260,8 +353,7 @@ const Mexico = () => {
           <Text lineHeight="tall" color="fg.muted">
             She also offers day tours along the north shore of Lake
             Chapala—castles, gardens, lunch by the lake, and the kind of spots
-            that make this region special. Reach out to learn more and see the
-            photos above.
+            that make this region special. Reach out to learn more.
           </Text>
         </Box>
       </Stack>
