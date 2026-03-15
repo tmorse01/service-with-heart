@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Heading,
   Box,
@@ -9,11 +9,10 @@ import {
   IconButton,
   Drawer,
   Portal,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { FaPhone, FaBars } from "react-icons/fa";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const NAV_ITEMS = [
   { to: "/", label: "Home", end: true },
@@ -43,34 +42,61 @@ const activeLinkStyles = {
   pb: 1,
 };
 
-const NavLinks = ({ isMobile = false, onLinkClick, firstLinkRef }) => (
+const isActivePath = (pathname, to, end) =>
+  pathname === to || (!end && pathname.startsWith(to + "/"));
+
+const NavLinks = ({
+  isMobile = false,
+  onLinkClick,
+  firstLinkRef,
+  currentPath,
+}) => (
   <>
-    {NAV_ITEMS.map(({ to, label, end }, index) => (
-      <Link
-        key={to}
-        ref={isMobile && index === 0 ? firstLinkRef : undefined}
-        as={NavLink}
-        to={to}
-        end={end}
-        {...linkStyles}
-        {...(isMobile
-          ? {
-              display: "block",
-              onClick: onLinkClick,
-              py: 3,
-              px: 2,
-              mb: 1,
-              minH: "44px",
-              fontSize: "lg",
-              borderRadius: "md",
-              _active: { bg: "bg.muted" },
-            }
-          : { mr: 4 })}
-        sx={{ "&.active": activeLinkStyles }}
-      >
-        {label}
-      </Link>
-    ))}
+    {NAV_ITEMS.map(({ to, label, end }, index) =>
+      isMobile ? (
+        <Box
+          key={to}
+          ref={index === 0 ? firstLinkRef : undefined}
+          as="button"
+          type="button"
+          onClick={() => onLinkClick?.(to)}
+          display="block"
+          py={3}
+          px={2}
+          mb={1}
+          minH="44px"
+          fontSize="lg"
+          borderRadius="md"
+          textAlign="left"
+          width="100%"
+          bg="transparent"
+          border="none"
+          cursor="pointer"
+          fontFamily="inherit"
+          {...linkStyles}
+          _active={{ bg: "bg.muted" }}
+          sx={
+            currentPath && isActivePath(currentPath, to, end)
+              ? { ...linkStyles, ...activeLinkStyles }
+              : undefined
+          }
+        >
+          {label}
+        </Box>
+      ) : (
+        <Link
+          key={to}
+          as={NavLink}
+          to={to}
+          end={end}
+          {...linkStyles}
+          mr={4}
+          sx={{ "&.active": activeLinkStyles }}
+        >
+          {label}
+        </Link>
+      ),
+    )}
   </>
 );
 
@@ -94,10 +120,16 @@ const PhoneBlock = ({ inDrawer = false }) => (
 
 const Header = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const firstDrawerLinkRef = useRef(null);
+
+  const handleMobileNavClick = (to) => {
+    setOpen(false);
+    navigate(to);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8);
@@ -106,8 +138,8 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    onClose();
-  }, [location.pathname, onClose]);
+    setOpen(false);
+  }, [location.pathname]);
 
   return (
     <Box
@@ -201,78 +233,79 @@ const Header = () => {
             </Flex>
           </>
         ) : (
-            <Drawer.Root
-              open={isOpen}
-              onOpenChange={({ open }) => (open ? onOpen() : onClose())}
-              placement="end"
-              size="xs"
-            >
-              <Drawer.Trigger asChild>
-                <IconButton
-                  type="button"
-                  aria-label={isOpen ? "Close menu" : "Open menu"}
-                  aria-expanded={isOpen}
-                  variant="ghost"
-                  colorPalette="tealPrimary"
-                  size="lg"
-                  flexShrink={0}
-                  minW={10}
-                  minH={10}
-                  _hover={{ bg: "bg.muted", color: "accent.solid" }}
-                  _focus={{ outline: "none" }}
-                  _active={{ bg: "bg.muted" }}
-                  sx={{ "& svg": { pointerEvents: "none" } }}
+          <Drawer.Root
+            open={open}
+            onOpenChange={(e) => setOpen(e.open)}
+            placement="end"
+            size="xs"
+          >
+            <Drawer.Trigger asChild>
+              <IconButton
+                type="button"
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+                variant="ghost"
+                colorPalette="tealPrimary"
+                size="lg"
+                flexShrink={0}
+                minW={10}
+                minH={10}
+                _hover={{ bg: "bg.muted", color: "accent.solid" }}
+                _focus={{ outline: "none" }}
+                _active={{ bg: "bg.muted" }}
+                sx={{ "& svg": { pointerEvents: "none" } }}
+              >
+                <FaBars />
+              </IconButton>
+            </Drawer.Trigger>
+            <Portal>
+              <Drawer.Backdrop />
+              <Drawer.Positioner>
+                <Drawer.Content
+                  bg="bg.subtle"
+                  color="fg.default"
+                  height="100%"
+                  width="min(85vw, 280px)"
                 >
-                  <FaBars />
-                </IconButton>
-              </Drawer.Trigger>
-              <Portal>
-                <Drawer.Backdrop />
-                <Drawer.Positioner>
-                  <Drawer.Content
-                    bg="bg.subtle"
+                  <Drawer.CloseTrigger
+                    aria-label="Close menu"
                     color="fg.default"
-                    height="100%"
-                    width="min(85vw, 280px)"
+                    size="lg"
+                    position="absolute"
+                    top={4}
+                    right={4}
+                    _hover={{ color: "accent.solid" }}
+                    _focus={{ outline: "none" }}
+                  />
+                  <Drawer.Header
+                    pt={10}
+                    pb={4}
+                    mb={2}
+                    borderBottomWidth="1px"
+                    borderColor="border.default"
+                    fontSize="md"
+                    fontWeight="semibold"
+                    color="fg.muted"
+                    letterSpacing="nav"
+                    textTransform="uppercase"
                   >
-                    <Drawer.CloseTrigger
-                      aria-label="Close menu"
-                      color="fg.default"
-                      size="lg"
-                      position="absolute"
-                      top={4}
-                      right={4}
-                      _hover={{ color: "accent.solid" }}
-                      _focus={{ outline: "none" }}
-                    />
-                    <Drawer.Header
-                      pt={10}
-                      pb={4}
-                      mb={2}
-                      borderBottomWidth="1px"
-                      borderColor="border.default"
-                      fontSize="md"
-                      fontWeight="semibold"
-                      color="fg.muted"
-                      letterSpacing="nav"
-                      textTransform="uppercase"
-                    >
-                      Menu
-                    </Drawer.Header>
-                    <Drawer.Body>
-                      <Flex as="nav" aria-label="Main" direction="column">
-                        <NavLinks
-                          isMobile
-                          onLinkClick={onClose}
-                          firstLinkRef={firstDrawerLinkRef}
-                        />
-                      </Flex>
-                      <PhoneBlock inDrawer />
-                    </Drawer.Body>
-                  </Drawer.Content>
-                </Drawer.Positioner>
-              </Portal>
-            </Drawer.Root>
+                    Menu
+                  </Drawer.Header>
+                  <Drawer.Body>
+                    <Flex as="nav" aria-label="Main" direction="column">
+                      <NavLinks
+                        isMobile
+                        onLinkClick={handleMobileNavClick}
+                        firstLinkRef={firstDrawerLinkRef}
+                        currentPath={location.pathname}
+                      />
+                    </Flex>
+                    <PhoneBlock inDrawer />
+                  </Drawer.Body>
+                </Drawer.Content>
+              </Drawer.Positioner>
+            </Portal>
+          </Drawer.Root>
         )}
       </Flex>
     </Box>
