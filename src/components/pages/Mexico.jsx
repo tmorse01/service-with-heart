@@ -10,7 +10,8 @@ import {
   AspectRatio,
   IconButton,
 } from "@chakra-ui/react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { forwardRef } from "react";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 const INTRO_PHOTOS = [
   { src: "/Poncitlan.jpeg", alt: "View of Poncitlan, Mexico" },
@@ -37,6 +38,28 @@ const CAROUSEL_SLIDES = [
   { src: "/gnome.jpeg", alt: "Garden gnome" },
 ];
 
+const CarouselActionButton = forwardRef(function CarouselActionButton(
+  { insetStart, insetEnd, ...props }, // eslint-disable-line react/prop-types -- passed to IconButton
+  ref,
+) {
+  return (
+    <IconButton
+      ref={ref}
+      size="xs"
+      variant="outline"
+      rounded="full"
+      position="absolute"
+      top="50%"
+      transform="translateY(-50%)"
+      zIndex={1}
+      bg="bg"
+      insetStart={insetStart}
+      insetEnd={insetEnd}
+      {...props}
+    />
+  );
+});
+
 const Mexico = () => {
   return (
     <Box p={[8, 8, 24]} align="center">
@@ -55,7 +78,12 @@ const Mexico = () => {
             maxW={{ md: "380px" }}
             mx={{ base: "auto", md: 0 }}
           >
-            <AspectRatio ratio={4 / 3} overflow="hidden" borderRadius="lg" boxShadow="md">
+            <AspectRatio
+              ratio={4 / 3}
+              overflow="hidden"
+              borderRadius="lg"
+              boxShadow="md"
+            >
               <Image
                 src={INTRO_PHOTOS[0].src}
                 alt={INTRO_PHOTOS[0].alt}
@@ -65,7 +93,11 @@ const Mexico = () => {
             </AspectRatio>
           </Box>
           <Box flex={1}>
-            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall" color="fg.muted">
+            <Text
+              fontSize={{ base: "md", md: "lg" }}
+              lineHeight="tall"
+              color="fg.muted"
+            >
               Meredith offers one <strong>FREE 15-minute phone call</strong> to
               connect with you and answer some of your questions using her own
               experiences from living in Mexico since May 2020.
@@ -83,7 +115,12 @@ const Mexico = () => {
             maxW={{ md: "380px" }}
             mx={{ base: "auto", md: 0 }}
           >
-            <AspectRatio ratio={4 / 3} overflow="hidden" borderRadius="lg" boxShadow="md">
+            <AspectRatio
+              ratio={4 / 3}
+              overflow="hidden"
+              borderRadius="lg"
+              boxShadow="md"
+            >
               <Image
                 src={INTRO_PHOTOS[1].src}
                 alt={INTRO_PHOTOS[1].alt}
@@ -93,7 +130,11 @@ const Mexico = () => {
             </AspectRatio>
           </Box>
           <Box flex={1}>
-            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall" color="fg.muted">
+            <Text
+              fontSize={{ base: "md", md: "lg" }}
+              lineHeight="tall"
+              color="fg.muted"
+            >
               If that time is insufficient, she will schedule up to a one-hour
               long conversation with you for $55 U.S. (payable in advance on
               PayPal). Make a list of your questions prior to connecting to make
@@ -105,49 +146,81 @@ const Mexico = () => {
 
       <Separator marginTop="2rem" marginBottom="1rem" />
 
-      <Carousel.Root slideCount={CAROUSEL_SLIDES.length} maxW="4xl" mx="auto" mb={4}>
-        <Carousel.ItemGroup>
-          {CAROUSEL_SLIDES.map((slide, index) => (
-            <Carousel.Item key={slide.src} index={index}>
-              <Box
-                position="relative"
-                overflow="hidden"
-                borderRadius="lg"
-                boxShadow="md"
-                sx={{
-                  aspectRatio: { base: "2/1", md: "16/9" },
+      <Carousel.Root
+        slideCount={CAROUSEL_SLIDES.length}
+        maxW="4xl"
+        mx="auto"
+        mb={4}
+        position="relative"
+      >
+        <Carousel.Control gap="4" width="full" position="relative">
+          <Carousel.PrevTrigger asChild>
+            <CarouselActionButton insetStart="4" aria-label="Previous image">
+              <LuChevronLeft />
+            </CarouselActionButton>
+          </Carousel.PrevTrigger>
+
+          <Carousel.ItemGroup width="full">
+            {CAROUSEL_SLIDES.map((slide, index) => (
+              <Carousel.Item key={slide.src} index={index}>
+                <AspectRatio
+                  ratio={{ base: 2 / 1, md: 16 / 9 }}
+                  overflow="hidden"
+                  borderRadius="lg"
+                  boxShadow="md"
+                  width="100%"
+                >
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fit="cover"
+                    align="center"
+                  />
+                </AspectRatio>
+              </Carousel.Item>
+            ))}
+          </Carousel.ItemGroup>
+
+          <Carousel.NextTrigger asChild>
+            <CarouselActionButton insetEnd="4" aria-label="Next image">
+              <LuChevronRight />
+            </CarouselActionButton>
+          </Carousel.NextTrigger>
+        </Carousel.Control>
+
+        <Box mt={3} overflowX="auto" maxW="full">
+          <Carousel.IndicatorGroup
+            gap={2}
+            justifyContent="center"
+            flexWrap="nowrap"
+            maxW="27rem"
+            mx="auto"
+            display="flex"
+          >
+            {CAROUSEL_SLIDES.map((slide, index) => (
+              <Carousel.Indicator
+                key={slide.src}
+                index={index}
+                unstyled
+                flexShrink={0}
+                _current={{
+                  outline: "2px solid",
+                  outlineColor: "colorPalette.subtle",
+                  outlineOffset: "2px",
                 }}
               >
                 <Image
+                  w="20"
+                  aspectRatio="16/9"
                   src={slide.src}
                   alt={slide.alt}
                   fit="cover"
-                  align="center"
-                  position="absolute"
-                  inset={0}
-                  width="100%"
-                  height="100%"
+                  borderRadius="md"
                 />
-              </Box>
-            </Carousel.Item>
-          ))}
-        </Carousel.ItemGroup>
-
-        <Carousel.Control justifyContent="center" gap={4} mt={3}>
-          <Carousel.PrevTrigger asChild>
-            <IconButton size="sm" variant="outline" aria-label="Previous image">
-              <FaChevronLeft />
-            </IconButton>
-          </Carousel.PrevTrigger>
-
-          <Carousel.Indicators />
-
-          <Carousel.NextTrigger asChild>
-            <IconButton size="sm" variant="outline" aria-label="Next image">
-              <FaChevronRight />
-            </IconButton>
-          </Carousel.NextTrigger>
-        </Carousel.Control>
+              </Carousel.Indicator>
+            ))}
+          </Carousel.IndicatorGroup>
+        </Box>
       </Carousel.Root>
 
       <Separator marginTop="2rem" marginBottom="1rem" />
