@@ -10,11 +10,26 @@ import {
   Text,
   Link,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { Link as RouterLink } from "react-router-dom";
 import "./../../App.css";
 import { useNavigate } from "react-router-dom";
-import Testimonial from "../shared/Testimonial";
+import Testimonial, { AVATAR_PALETTES } from "../shared/Testimonial";
 import { featuredTestimonials } from "../../data/testimonials";
+
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const sectionTransition = { duration: 0.5, ease: [0.22, 1, 0.36, 1] };
+const heroStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
 
 const Home = () => {
   const navigate = useNavigate();
@@ -39,8 +54,7 @@ const Home = () => {
           alignItems="center"
           justifyContent="center"
         />
-        <Flex
-          className="hero-content"
+        <MotionFlex
           direction="column"
           alignItems="center"
           justifyContent="center"
@@ -50,7 +64,11 @@ const Home = () => {
           p={8}
           color="fg.inverted"
           textAlign="center"
+          initial="hidden"
+          animate="visible"
+          variants={heroStagger}
         >
+          <MotionBox variants={fadeUp} transition={sectionTransition}>
           <Heading
             as="h2"
             size={{ base: "2xl", md: "3xl" }}
@@ -58,9 +76,13 @@ const Home = () => {
           >
             Rev. Meredith Ann Murray
           </Heading>
+          </MotionBox>
+          <MotionBox variants={fadeUp} transition={sectionTransition}>
           <Text fontSize={{ base: "md", md: "lg" }} opacity={0.95}>
             Welcome!
           </Text>
+          </MotionBox>
+          <MotionBox variants={fadeUp} transition={sectionTransition}>
           <Heading
             as="h3"
             size={{ base: "md", md: "lg" }}
@@ -69,6 +91,8 @@ const Home = () => {
           >
             Integrated Energy Therapy Advanced Level Practitioner
           </Heading>
+          </MotionBox>
+          <MotionBox variants={fadeUp} transition={sectionTransition}>
           <Stack
             direction={{ base: "column", sm: "row" }}
             spacing={4}
@@ -95,27 +119,39 @@ const Home = () => {
               Find Out More
             </Button>
           </Stack>
-        </Flex>
+          </MotionBox>
+        </MotionFlex>
       </Box>
 
       {/* 2. Intro — Logo + Welcome */}
       <Box py={{ base: 8, md: 10 }} px={{ base: 4, md: 6 }} bg="bg.subtle">
         <Container maxW="container.lg">
-          <Flex direction="column" align="center" textAlign="center" gap={4}>
-            <Image
-              fit="contain"
-              width={{ base: "120px", md: "160px" }}
-              height="auto"
-              src="/Logo.png"
-              alt="Heart Logo - Service With Heart"
-            />
-            <Heading as="h2" size="lg" color="fg.default">
-              Service With Heart
-            </Heading>
-            <Text fontSize="lg" color="fg.muted" maxW="560px">
-              Healing with the energy of angels. Remote IET sessions from
-              Ajijic, Mexico.
-            </Text>
+          <Flex
+            direction="column"
+            align="center"
+            textAlign="center"
+            gap={4}
+          >
+            <Box>
+              <Image
+                fit="contain"
+                width={{ base: "120px", md: "160px" }}
+                height="auto"
+                src="/Logo.png"
+                alt="Heart Logo - Service With Heart"
+              />
+            </Box>
+            <Box>
+              <Heading as="h2" size="lg" color="fg.default">
+                Service With Heart
+              </Heading>
+            </Box>
+            <Box>
+              <Text fontSize="lg" color="fg.muted" maxW="560px">
+                Healing with the energy of angels. Remote IET sessions from
+                Ajijic, Mexico.
+              </Text>
+            </Box>
           </Flex>
         </Container>
       </Box>
@@ -127,10 +163,14 @@ const Home = () => {
         bg="bg.default"
       >
         <Container maxW="container.xl">
-          <Flex
+          <MotionFlex
             direction={{ base: "column", lg: "row" }}
             align={{ lg: "center" }}
             gap={{ base: 6, lg: 10 }}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={sectionTransition}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
               <AspectRatio
@@ -168,7 +208,7 @@ const Home = () => {
                 Learn more about Meredith →
               </Button>
             </Box>
-          </Flex>
+          </MotionFlex>
         </Container>
       </Box>
 
@@ -179,10 +219,14 @@ const Home = () => {
         bg="bg.subtle"
       >
         <Container maxW="container.xl">
-          <Flex
+          <MotionFlex
             direction={{ base: "column", lg: "row-reverse" }}
             align={{ lg: "center" }}
             gap={{ base: 6, lg: 10 }}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={sectionTransition}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
               <AspectRatio
@@ -220,7 +264,7 @@ const Home = () => {
                 Learn more about IET →
               </Button>
             </Box>
-          </Flex>
+          </MotionFlex>
         </Container>
       </Box>
 
@@ -231,22 +275,45 @@ const Home = () => {
         bg="bg.default"
       >
         <Container maxW="container.xl">
-          <Flex direction="column" align="center" gap={8}>
+          <MotionFlex
+            direction="column"
+            align="center"
+            gap={8}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={sectionTransition}
+          >
             <Heading as="h2" size="xl">
               What Clients Say
             </Heading>
-            <Stack
+            <MotionFlex
+              as={motion.div}
               direction={{ base: "column", md: "row" }}
-              spacing={6}
+              gap={8}
               justify="center"
               align="stretch"
               width="100%"
               maxW="900px"
+              variants={heroStagger}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
               {featuredTestimonials.map((item, index) => (
-                <Testimonial key={index} name={item.name} text={item.text} />
+                <MotionBox
+                  key={index}
+                  variants={fadeUp}
+                  transition={sectionTransition}
+                >
+                  <Testimonial
+                    name={item.name}
+                    text={item.text}
+                    colorPalette={AVATAR_PALETTES[index % AVATAR_PALETTES.length]}
+                  />
+                </MotionBox>
               ))}
-            </Stack>
+            </MotionFlex>
             <Link
               as={RouterLink}
               to="/testimonials"
@@ -255,7 +322,7 @@ const Home = () => {
             >
               Read all testimonials →
             </Link>
-          </Flex>
+          </MotionFlex>
         </Container>
       </Box>
 
@@ -266,10 +333,14 @@ const Home = () => {
         bg="bg.subtle"
       >
         <Container maxW="container.xl">
-          <Flex
+          <MotionFlex
             direction={{ base: "column", lg: "row" }}
             align={{ lg: "center" }}
             gap={{ base: 6, lg: 10 }}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={sectionTransition}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
               <AspectRatio
@@ -305,14 +376,23 @@ const Home = () => {
                 Learn more about Mexico →
               </Button>
             </Box>
-          </Flex>
+          </MotionFlex>
         </Container>
       </Box>
 
       {/* 7. Final CTA */}
       <Box py={{ base: 10, md: 14 }} px={{ base: 4, md: 6 }} bg="bg.default">
         <Container maxW="container.md">
-          <Flex direction="column" align="center" textAlign="center" gap={5}>
+          <MotionFlex
+            direction="column"
+            align="center"
+            textAlign="center"
+            gap={5}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={sectionTransition}
+          >
             <Image
               fit="contain"
               width={{ base: "100px", md: "120px" }}
@@ -332,7 +412,7 @@ const Home = () => {
             >
               Schedule an Appointment
             </Button>
-          </Flex>
+          </MotionFlex>
         </Container>
       </Box>
     </Box>

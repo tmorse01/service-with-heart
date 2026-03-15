@@ -4,7 +4,20 @@ import { Box, Avatar, Text, Flex, Button } from "@chakra-ui/react";
 const TRUNCATE_LENGTH = 220;
 const CARD_MIN_HEIGHT = 260;
 
-const Testimonial = ({ name, text }) => {
+/** Fun Chakra UI palette colors for avatar fallbacks (cycles by index). */
+export const AVATAR_PALETTES = [
+  "pink",
+  "purple",
+  "blue",
+  "cyan",
+  "teal",
+  "green",
+  "orange",
+  "yellow",
+  "red",
+];
+
+const Testimonial = ({ name, text, colorPalette }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const isLong = text.length > TRUNCATE_LENGTH;
 
@@ -28,7 +41,7 @@ const Testimonial = ({ name, text }) => {
       }}
     >
       <Flex align="center" flexShrink={0}>
-        <Avatar.Root size="md">
+        <Avatar.Root size="md" colorPalette={colorPalette ?? "gray"}>
           <Avatar.Fallback name={name} />
         </Avatar.Root>
         <Text ml={3} fontWeight="bold">

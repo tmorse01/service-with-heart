@@ -7,7 +7,7 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import Testimonial from "../shared/Testimonial";
+import Testimonial, { AVATAR_PALETTES } from "../shared/Testimonial";
 import { testimonials } from "../../data/testimonials";
 import "./../../App.css";
 
@@ -52,7 +52,7 @@ const Testimonials = () => {
         </Flex>
         <SimpleGrid
           columns={{ base: 1, md: 2, lg: 3 }}
-          spacing={6}
+          gap={8}
           justifyItems="center"
           alignItems="start"
         >
@@ -66,7 +66,11 @@ const Testimonials = () => {
                 maxW: "400px",
               }}
             >
-              <Testimonial name={item.name} text={item.text} />
+              <Testimonial
+                name={item.name}
+                text={item.text}
+                colorPalette={AVATAR_PALETTES[index % AVATAR_PALETTES.length]}
+              />
             </Box>
           ))}
         </SimpleGrid>

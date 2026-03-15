@@ -1,5 +1,5 @@
-import { useState } from "react";
 import {
+  Carousel,
   Heading,
   Flex,
   Box,
@@ -7,10 +7,10 @@ import {
   Text,
   Separator,
   Image,
+  AspectRatio,
   IconButton,
 } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 const INTRO_PHOTOS = [
   { src: "/Poncitlan.jpeg", alt: "View of Poncitlan, Mexico" },
@@ -37,105 +37,6 @@ const CAROUSEL_SLIDES = [
   { src: "/gnome.jpeg", alt: "Garden gnome" },
 ];
 
-function ImageCarousel({ slides }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const maxIndex = slides.length - 1;
-
-  const goPrev = () => setCurrentIndex((i) => (i <= 0 ? maxIndex : i - 1));
-  const goNext = () => setCurrentIndex((i) => (i >= maxIndex ? 0 : i + 1));
-
-  return (
-    <Box
-      role="region"
-      aria-roledescription="carousel"
-      position="relative"
-      maxW="4xl"
-      mx="auto"
-      mb={4}
-    >
-      <Flex align="center" gap={2}>
-        <IconButton
-          aria-label="Previous image"
-          icon={<Icon as={FiChevronLeft} />}
-          onClick={goPrev}
-          variant="outline"
-          size="sm"
-          flexShrink={0}
-        />
-        <Box
-          flex={1}
-          overflow="hidden"
-          borderRadius="lg"
-          boxShadow="md"
-          position="relative"
-          sx={{ aspectRatio: "4/3" }}
-        >
-          <Flex
-            position="absolute"
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            w={`${slides.length * 100}%`}
-            h="100%"
-            transform={`translateX(-${(currentIndex / slides.length) * 100}%)`}
-            transition="transform 0.3s ease-out"
-          >
-            {slides.map((slide) => (
-              <Box
-                key={slide.src}
-                w={`${100 / slides.length}%`}
-                h="100%"
-                position="relative"
-                flexShrink={0}
-              >
-                <Image
-                  as="img"
-                  src={slide.src}
-                  alt={slide.alt}
-                  objectFit="cover"
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  w="100%"
-                  h="100%"
-                  display="block"
-                />
-              </Box>
-            ))}
-          </Flex>
-        </Box>
-        <IconButton
-          aria-label="Next image"
-          icon={<Icon as={FiChevronRight} />}
-          onClick={goNext}
-          variant="outline"
-          size="sm"
-          flexShrink={0}
-        />
-      </Flex>
-      <Flex justify="center" gap={1} mt={2} flexWrap="wrap">
-        {slides.map((slide, i) => (
-          <Box
-            key={slide.src}
-            as="button"
-            type="button"
-            aria-label={`Go to image ${i + 1}`}
-            onClick={() => setCurrentIndex(i)}
-            w={2}
-            h={2}
-            borderRadius="full"
-            bg={i === currentIndex ? "accent.solid" : "bg.emphasized"}
-            _hover={{ bg: i === currentIndex ? "accent.muted" : "border.default" }}
-          />
-        ))}
-      </Flex>
-    </Box>
-  );
-}
-
 const Mexico = () => {
   return (
     <Box p={[8, 8, 24]} align="center">
@@ -154,22 +55,14 @@ const Mexico = () => {
             maxW={{ md: "380px" }}
             mx={{ base: "auto", md: 0 }}
           >
-            <Box
-              overflow="hidden"
-              borderRadius="lg"
-              boxShadow="md"
-              sx={{ aspectRatio: "4/3" }}
-            >
+            <AspectRatio ratio={4 / 3} overflow="hidden" borderRadius="lg" boxShadow="md">
               <Image
-                as="img"
                 src={INTRO_PHOTOS[0].src}
                 alt={INTRO_PHOTOS[0].alt}
-                objectFit="cover"
-                w="100%"
-                h="100%"
-                display="block"
+                fit="cover"
+                align="center"
               />
-            </Box>
+            </AspectRatio>
           </Box>
           <Box flex={1}>
             <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall">
@@ -190,22 +83,14 @@ const Mexico = () => {
             maxW={{ md: "380px" }}
             mx={{ base: "auto", md: 0 }}
           >
-            <Box
-              overflow="hidden"
-              borderRadius="lg"
-              boxShadow="md"
-              sx={{ aspectRatio: "4/3" }}
-            >
+            <AspectRatio ratio={4 / 3} overflow="hidden" borderRadius="lg" boxShadow="md">
               <Image
-                as="img"
                 src={INTRO_PHOTOS[1].src}
                 alt={INTRO_PHOTOS[1].alt}
-                objectFit="cover"
-                w="100%"
-                h="100%"
-                display="block"
+                fit="cover"
+                align="center"
               />
-            </Box>
+            </AspectRatio>
           </Box>
           <Box flex={1}>
             <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall">
@@ -220,7 +105,38 @@ const Mexico = () => {
 
       <Separator marginTop="2rem" marginBottom="1rem" />
 
-      <ImageCarousel slides={CAROUSEL_SLIDES} />
+      <Carousel.Root slideCount={CAROUSEL_SLIDES.length} maxW="4xl" mx="auto" mb={4}>
+        <Carousel.ItemGroup>
+          {CAROUSEL_SLIDES.map((slide, index) => (
+            <Carousel.Item key={slide.src} index={index}>
+              <AspectRatio ratio={4 / 3} overflow="hidden" borderRadius="lg" boxShadow="md">
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  fit="cover"
+                  align="center"
+                />
+              </AspectRatio>
+            </Carousel.Item>
+          ))}
+        </Carousel.ItemGroup>
+
+        <Carousel.Control justifyContent="center" gap={4} mt={3}>
+          <Carousel.PrevTrigger asChild>
+            <IconButton size="sm" variant="outline" aria-label="Previous image">
+              <LuChevronLeft />
+            </IconButton>
+          </Carousel.PrevTrigger>
+
+          <Carousel.Indicators />
+
+          <Carousel.NextTrigger asChild>
+            <IconButton size="sm" variant="outline" aria-label="Next image">
+              <LuChevronRight />
+            </IconButton>
+          </Carousel.NextTrigger>
+        </Carousel.Control>
+      </Carousel.Root>
 
       <Separator marginTop="2rem" marginBottom="1rem" />
 
