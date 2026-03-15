@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Divider, Heading, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Separator, Heading, Text, Image } from "@chakra-ui/react";
 import "./../../App.css";
 const About = () => {
   return (
@@ -13,7 +13,7 @@ const About = () => {
         <Heading as="h2" size="3xl">
           About Meredith
         </Heading>
-        <Divider />
+        <Separator />
         <Image
           objectFit="cover"
           objectPosition="center"

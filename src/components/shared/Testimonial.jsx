@@ -28,7 +28,9 @@ const Testimonial = ({ name, text }) => {
       }}
     >
       <Flex align="center" flexShrink={0}>
-        <Avatar size="md" name={name} />
+        <Avatar.Root size="md">
+          <Avatar.Fallback name={name} />
+        </Avatar.Root>
         <Text ml={3} fontWeight="bold">
           {name}
         </Text>
@@ -42,7 +44,7 @@ const Testimonial = ({ name, text }) => {
         fontSize="sm"
         lineHeight="tall"
         color="fg.muted"
-        noOfLines={isExpanded ? undefined : 4}
+        lineClamp={isExpanded ? undefined : 4}
         overflow={isExpanded ? "visible" : "hidden"}
       >
         {text}
@@ -51,7 +53,7 @@ const Testimonial = ({ name, text }) => {
         <Button
           size="sm"
           variant="link"
-          colorScheme="teal"
+          colorPalette="tealPrimary"
           mt={3}
           flexShrink={0}
           alignSelf="flex-start"

@@ -5,6 +5,7 @@ import {
   Button,
   Heading,
   Image,
+  AspectRatio,
   Stack,
   Text,
   Link,
@@ -74,7 +75,7 @@ const Home = () => {
             align="center"
           >
             <Button
-              colorScheme="teal"
+              colorPalette="tealPrimary"
               size="lg"
               onClick={() => navigate("/contact")}
               _hover={{ transform: "translateY(-1px)" }}
@@ -83,7 +84,7 @@ const Home = () => {
               Schedule an Appointment
             </Button>
             <Button
-              colorScheme="teal"
+              colorPalette="tealPrimary"
               variant="outline"
               size="lg"
               borderColor="fg.inverted"
@@ -102,9 +103,10 @@ const Home = () => {
         <Container maxW="container.lg">
           <Flex direction="column" align="center" textAlign="center" gap={4}>
             <Image
-              objectFit="contain"
+              fit="contain"
               width={{ base: "120px", md: "160px" }}
-              src="/Heart_Logo.jpg"
+              height="auto"
+              src="/Logo.png"
               alt="Heart Logo - Service With Heart"
             />
             <Heading as="h2" size="lg" color="fg.default">
@@ -119,7 +121,11 @@ const Home = () => {
       </Box>
 
       {/* 3. About Meredith — Image Left, Text Right */}
-      <Box py={{ base: 8, md: 12, lg: 16 }} px={{ base: 4, md: 6 }} bg="bg.default">
+      <Box
+        py={{ base: 8, md: 12, lg: 16 }}
+        px={{ base: 4, md: 6 }}
+        bg="bg.default"
+      >
         <Container maxW="container.xl">
           <Flex
             direction={{ base: "column", lg: "row" }}
@@ -127,25 +133,19 @@ const Home = () => {
             gap={{ base: 6, lg: 10 }}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
-              <Box
-                position="relative"
-                width="100%"
+              <AspectRatio
+                ratio={4 / 3}
                 overflow="hidden"
                 borderRadius="lg"
                 boxShadow="md"
-                sx={{ aspectRatio: "4/3" }}
               >
                 <Image
                   src="/meredith-big-tree.jpeg"
                   alt="Meredith in nature"
-                  objectFit="cover"
-                  objectPosition="center"
-                  position="absolute"
-                  inset={0}
-                  width="100%"
-                  height="100%"
+                  fit="cover"
+                  align="center"
                 />
-              </Box>
+              </AspectRatio>
             </Box>
             <Box flex={1}>
               <Heading as="h2" size="xl" mb={4}>
@@ -161,7 +161,7 @@ const Home = () => {
               <Button
                 as={RouterLink}
                 to="/about"
-                colorScheme="teal"
+                colorPalette="tealPrimary"
                 variant="outline"
                 size="sm"
               >
@@ -185,25 +185,19 @@ const Home = () => {
             gap={{ base: 6, lg: 10 }}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
-              <Box
-                position="relative"
-                width="100%"
+              <AspectRatio
+                ratio={4 / 3}
                 overflow="hidden"
                 borderRadius="lg"
                 boxShadow="md"
-                sx={{ aspectRatio: "4/3" }}
               >
                 <Image
                   src="/vortex1.jpeg"
                   alt="Peaceful garden"
-                  objectFit="cover"
-                  objectPosition="center"
-                  position="absolute"
-                  inset={0}
-                  width="100%"
-                  height="100%"
+                  fit="cover"
+                  align="center"
                 />
-              </Box>
+              </AspectRatio>
             </Box>
             <Box flex={1}>
               <Heading as="h2" size="xl" mb={4}>
@@ -219,7 +213,7 @@ const Home = () => {
               <Button
                 as={RouterLink}
                 to="/iet"
-                colorScheme="teal"
+                colorPalette="tealPrimary"
                 variant="outline"
                 size="sm"
               >
@@ -231,7 +225,11 @@ const Home = () => {
       </Box>
 
       {/* 5. Testimonials — Text Only */}
-      <Box py={{ base: 8, md: 12, lg: 16 }} px={{ base: 4, md: 6 }} bg="bg.default">
+      <Box
+        py={{ base: 8, md: 12, lg: 16 }}
+        px={{ base: 4, md: 6 }}
+        bg="bg.default"
+      >
         <Container maxW="container.xl">
           <Flex direction="column" align="center" gap={8}>
             <Heading as="h2" size="xl">
@@ -274,25 +272,19 @@ const Home = () => {
             gap={{ base: 6, lg: 10 }}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
-              <Box
-                position="relative"
-                width="100%"
+              <AspectRatio
+                ratio={4 / 3}
                 overflow="hidden"
                 borderRadius="lg"
                 boxShadow="md"
-                sx={{ aspectRatio: "4/3" }}
               >
                 <Image
                   src="/Poncitlan.jpeg"
                   alt="Poncitlan, Mexico"
-                  objectFit="cover"
-                  objectPosition="center"
-                  position="absolute"
-                  inset={0}
-                  width="100%"
-                  height="100%"
+                  fit="cover"
+                  align="center"
                 />
-              </Box>
+              </AspectRatio>
             </Box>
             <Box flex={1}>
               <Heading as="h2" size="xl" mb={4}>
@@ -306,7 +298,7 @@ const Home = () => {
               <Button
                 as={RouterLink}
                 to="/mexico"
-                colorScheme="teal"
+                colorPalette="tealPrimary"
                 variant="outline"
                 size="sm"
               >
@@ -322,16 +314,17 @@ const Home = () => {
         <Container maxW="container.md">
           <Flex direction="column" align="center" textAlign="center" gap={5}>
             <Image
-              objectFit="contain"
+              fit="contain"
               width={{ base: "100px", md: "120px" }}
-              src="/Heart_Logo.jpg"
+              height="auto"
+              src="/Logo.png"
               alt="Service With Heart"
             />
             <Heading as="h2" size="lg" color="fg.default">
               Ready to begin your healing journey?
             </Heading>
             <Button
-              colorScheme="teal"
+              colorPalette="tealPrimary"
               size="lg"
               onClick={() => navigate("/contact")}
               _hover={{ transform: "translateY(-1px)" }}

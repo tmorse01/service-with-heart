@@ -5,11 +5,12 @@ import {
   Box,
   Stack,
   Text,
-  Divider,
+  Separator,
   Image,
   IconButton,
 } from "@chakra-ui/react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { Icon } from "@chakra-ui/react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const INTRO_PHOTOS = [
   { src: "/Poncitlan.jpeg", alt: "View of Poncitlan, Mexico" },
@@ -55,7 +56,7 @@ function ImageCarousel({ slides }) {
       <Flex align="center" gap={2}>
         <IconButton
           aria-label="Previous image"
-          icon={<ChevronLeftIcon />}
+          icon={<Icon as={FiChevronLeft} />}
           onClick={goPrev}
           variant="outline"
           size="sm"
@@ -108,7 +109,7 @@ function ImageCarousel({ slides }) {
         </Box>
         <IconButton
           aria-label="Next image"
-          icon={<ChevronRightIcon />}
+          icon={<Icon as={FiChevronRight} />}
           onClick={goNext}
           variant="outline"
           size="sm"
@@ -217,11 +218,11 @@ const Mexico = () => {
         </Flex>
       </Stack>
 
-      <Divider marginTop="2rem" marginBottom="1rem" />
+      <Separator marginTop="2rem" marginBottom="1rem" />
 
       <ImageCarousel slides={CAROUSEL_SLIDES} />
 
-      <Divider marginTop="2rem" marginBottom="1rem" />
+      <Separator marginTop="2rem" marginBottom="1rem" />
 
       <Stack
         spacing={[6, 6, 8]}

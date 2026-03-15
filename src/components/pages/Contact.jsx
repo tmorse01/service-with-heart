@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
-  FormControl,
-  FormLabel,
+  Field as ChakraField,
   Input,
   Textarea,
   Heading,
@@ -11,10 +10,7 @@ import {
   Text,
   Link,
   Icon,
-  Stack,
-  useToast,
 } from "@chakra-ui/react";
-import { EmailIcon } from "@chakra-ui/icons";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 import { Formik, Form, Field } from "formik";
@@ -22,7 +18,7 @@ import * as Yup from "yup";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
-  const toast = useToast();
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const initialValues = {
     name: "",
@@ -51,23 +47,11 @@ const Contact = () => {
       .then(
         (result) => {
           console.log(result.text);
-          toast({
-            title: "Form Submitted",
-            description: "Your contact form has been submitted successfully.",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
+          setSubmitStatus("success");
         },
         (error) => {
           console.error(error.text);
-          toast({
-            title: "Error",
-            description: "There was an error submitting the form.",
-            status: "error",
-            duration: 5000,
-            isClosable: true,
-          });
+          setSubmitStatus("error");
         }
       );
   };
@@ -103,63 +87,86 @@ const Contact = () => {
               <Form>
                 <Field name="name">
                   {({ field, form }) => (
-                    <FormControl
+                    <ChakraField.Root
                       id="name"
-                      isRequired
-                      isInvalid={form.errors.name && form.touched.name}
+                      required
+                      invalid={form.errors.name && form.touched.name}
                     >
-                      <FormLabel>Name</FormLabel>
+                      <ChakraField.Label>Name</ChakraField.Label>
                       <Input {...field} />
-                    </FormControl>
+                      {form.errors.name && form.touched.name && (
+                        <ChakraField.ErrorText>{form.errors.name}</ChakraField.ErrorText>
+                      )}
+                    </ChakraField.Root>
                   )}
                 </Field>
 
                 <Field name="email">
                   {({ field, form }) => (
-                    <FormControl
+                    <ChakraField.Root
                       id="email"
-                      isRequired
-                      isInvalid={form.errors.email && form.touched.email}
+                      required
+                      invalid={form.errors.email && form.touched.email}
                     >
-                      <FormLabel>Email</FormLabel>
+                      <ChakraField.Label>Email</ChakraField.Label>
                       <Input type="email" {...field} />
-                    </FormControl>
+                      {form.errors.email && form.touched.email && (
+                        <ChakraField.ErrorText>{form.errors.email}</ChakraField.ErrorText>
+                      )}
+                    </ChakraField.Root>
                   )}
                 </Field>
 
                 <Field name="phoneNumber">
                   {({ field, form }) => (
-                    <FormControl
+                    <ChakraField.Root
                       id="phoneNumber"
-                      isRequired
-                      isInvalid={
+                      required
+                      invalid={
                         form.errors.phoneNumber && form.touched.phoneNumber
                       }
                     >
-                      <FormLabel>Phone Number</FormLabel>
+                      <ChakraField.Label>Phone Number</ChakraField.Label>
                       <Input type="tel" {...field} />
-                    </FormControl>
+                      {form.errors.phoneNumber && form.touched.phoneNumber && (
+                        <ChakraField.ErrorText>{form.errors.phoneNumber}</ChakraField.ErrorText>
+                      )}
+                    </ChakraField.Root>
                   )}
                 </Field>
 
                 <Field name="message">
                   {({ field, form }) => (
-                    <FormControl
+                    <ChakraField.Root
                       id="message"
-                      isRequired
-                      isInvalid={form.errors.message && form.touched.message}
+                      required
+                      invalid={form.errors.message && form.touched.message}
                     >
-                      <FormLabel>Message</FormLabel>
+                      <ChakraField.Label>Message</ChakraField.Label>
                       <Textarea {...field} />
-                    </FormControl>
+                      {form.errors.message && form.touched.message && (
+                        <ChakraField.ErrorText>{form.errors.message}</ChakraField.ErrorText>
+                      )}
+                    </ChakraField.Root>
                   )}
                 </Field>
+
+                {submitStatus === "success" && (
+                  <Text color="green.600" mt={2}>
+                    Form submitted successfully!
+                  </Text>
+                )}
+                {submitStatus === "error" && (
+                  <Text color="red.600" mt={2}>
+                    There was an error submitting the form.
+                  </Text>
+                )}
 
                 <Button
                   type="submit"
                   mt={4}
-                  colorScheme="teal"
-                  isLoading={formikProps.isSubmitting}
+                  colorPalette="tealPrimary"
+                  loading={formikProps.isSubmitting}
                 >
                   Submit
                 </Button>

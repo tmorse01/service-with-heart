@@ -8,14 +8,11 @@ import {
   useBreakpointValue,
   IconButton,
   Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
+  Portal,
   useDisclosure,
 } from "@chakra-ui/react";
-import { PhoneIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { Icon } from "@chakra-ui/react";
+import { FiPhone, FiMenu } from "react-icons/fi";
 import { NavLink, useLocation } from "react-router-dom";
 
 const NAV_ITEMS = [
@@ -35,11 +32,7 @@ const linkStyles = {
   fontSize: "xl",
   textDecoration: "none",
   _hover: { color: "accent.solid" },
-  _focusVisible: {
-    outline: "2px solid",
-    outlineColor: "accent.muted",
-    outlineOffset: "2px",
-  },
+  _focus: { outline: "none" },
 };
 
 const activeLinkStyles = {
@@ -82,7 +75,7 @@ const PhoneBlock = ({ inDrawer = false }) => (
       ? { mt: 4, pt: 4, borderTopWidth: 1, borderColor: "border.default" }
       : {})}
   >
-    <PhoneIcon />
+    <Icon as={FiPhone} boxSize={5} />
     <Text as="a" href={`tel:${PHONE.replace(/-/g, "")}`}>
       {PHONE}
     </Text>
@@ -116,9 +109,9 @@ const Header = () => {
       position="sticky"
       top={0}
       zIndex="sticky"
-      boxShadow={scrolled ? "md" : "none"}
+      boxShadow={scrolled ? "md" : "0 2px 6px rgba(0,0,0,0.06)"}
       borderBottom="1px solid"
-      borderColor="border.default"
+      borderColor="rgba(0,0,0,0.08)"
       transition="box-shadow 0.2s"
     >
       <Link
@@ -145,11 +138,7 @@ const Header = () => {
             as={NavLink}
             to="/"
             _hover={{ color: "accent.solid" }}
-            _focusVisible={{
-              outline: "2px solid",
-              outlineColor: "accent.muted",
-              outlineOffset: "2px",
-            }}
+            _focus={{ outline: "none" }}
           >
             Service With Heart
           </Link>
@@ -181,59 +170,62 @@ const Header = () => {
             <IconButton
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
-              icon={<HamburgerIcon boxSize={6} />}
+              icon={<Icon as={FiMenu} boxSize={6} />}
               variant="ghost"
               color="fg.default"
               size="lg"
               onClick={onOpen}
               _hover={{ bg: "bg.muted", color: "accent.solid" }}
-              _focusVisible={{
-                outline: "2px solid",
-                outlineColor: "accent.muted",
-                outlineOffset: "2px",
-              }}
+              _focus={{ outline: "none" }}
             />
-            <Drawer
-              isOpen={isOpen}
-              placement="right"
-              onClose={onClose}
+            <Drawer.Root
+              open={isOpen}
+              onOpenChange={(e) => (e.open ? onOpen() : onClose())}
+              placement="end"
               size="xs"
-              initialFocusRef={firstDrawerLinkRef}
             >
-              <DrawerOverlay />
-              <DrawerContent bg="bg.subtle" color="fg.default">
-                <DrawerCloseButton
-                  aria-label="Close menu"
-                  color="fg.default"
-                  size="lg"
-                  _hover={{ color: "accent.solid" }}
-                />
-                <DrawerHeader
-                  pt={10}
-                  pb={4}
-                  mb={2}
-                  borderBottomWidth="1px"
-                  borderColor="border.default"
-                  fontSize="sm"
-                  fontWeight="semibold"
-                  color="fg.muted"
-                  letterSpacing="wider"
-                  textTransform="uppercase"
-                >
-                  Menu
-                </DrawerHeader>
-                <DrawerBody>
-                  <Flex as="nav" aria-label="Main" direction="column">
-                    <NavLinks
-                      isMobile
-                      onLinkClick={onClose}
-                      firstLinkRef={firstDrawerLinkRef}
+              <Portal>
+                <Drawer.Backdrop />
+                <Drawer.Positioner>
+                  <Drawer.Content bg="bg.subtle" color="fg.default" height="100%">
+                    <Drawer.CloseTrigger
+                      aria-label="Close menu"
+                      color="fg.default"
+                      size="lg"
+                      position="absolute"
+                      top={4}
+                      right={4}
+                      _hover={{ color: "accent.solid" }}
+                      _focus={{ outline: "none" }}
                     />
-                  </Flex>
-                  <PhoneBlock inDrawer />
-                </DrawerBody>
-              </DrawerContent>
-            </Drawer>
+                    <Drawer.Header
+                      pt={10}
+                      pb={4}
+                      mb={2}
+                      borderBottomWidth="1px"
+                      borderColor="border.default"
+                      fontSize="sm"
+                      fontWeight="semibold"
+                      color="fg.muted"
+                      letterSpacing="wider"
+                      textTransform="uppercase"
+                    >
+                      Menu
+                    </Drawer.Header>
+                    <Drawer.Body>
+                      <Flex as="nav" aria-label="Main" direction="column">
+                        <NavLinks
+                          isMobile
+                          onLinkClick={onClose}
+                          firstLinkRef={firstDrawerLinkRef}
+                        />
+                      </Flex>
+                      <PhoneBlock inDrawer />
+                    </Drawer.Body>
+                  </Drawer.Content>
+                </Drawer.Positioner>
+              </Portal>
+            </Drawer.Root>
           </>
         )}
       </Flex>

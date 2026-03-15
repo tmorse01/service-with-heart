@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Stack,
-  Divider,
+  Separator,
   Image,
   Box,
   Flex,
@@ -20,7 +20,7 @@ const IET = () => {
             <Heading as="h2" size="3xl">
               What is Integrated Energy Therapy?
             </Heading>
-            <Divider />
+            <Separator />
             <Heading as="h4" size="xl">
               From LearnIET.com:
             </Heading>
