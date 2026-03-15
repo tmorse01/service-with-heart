@@ -64,7 +64,9 @@ const IET = () => {
           <Image
             src={"/green_candles.jpg"}
             alt="Green candles"
-            objectFit="cover"
+            width="100%"
+            maxH={["480px", "520px", "620px"]}
+            objectFit="contain"
             borderRadius="md"
           />
         </Box>

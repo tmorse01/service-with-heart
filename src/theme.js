@@ -21,7 +21,26 @@ const theme = extendTheme({
     body: "Arial, sans-serif",
     heading: "Helvetica, sans-serif",
   },
-  // Add more styles and settings as needed
+  semanticTokens: {
+    colors: {
+      // Background (light theme)
+      "bg.default": { default: "white", _dark: "gray.950" },
+      "bg.subtle": { default: "gray.50", _dark: "gray.950" },
+      "bg.muted": { default: "gray.100", _dark: "gray.900" },
+      "bg.emphasized": { default: "gray.200", _dark: "gray.800" },
+      // Text / foreground
+      "fg.default": { default: "gray.900", _dark: "gray.50" },
+      "fg.muted": { default: "gray.600", _dark: "gray.400" },
+      "fg.subtle": { default: "gray.500", _dark: "gray.500" },
+      "fg.inverted": { default: "gray.50", _dark: "gray.900" },
+      // Border
+      "border.default": { default: "gray.200", _dark: "gray.800" },
+      "border.muted": { default: "gray.100", _dark: "gray.900" },
+      // Accent (teal) for buttons, links, active states
+      "accent.solid": { default: "tealPrimary.600", _dark: "tealPrimary.400" },
+      "accent.muted": { default: "tealPrimary.500", _dark: "tealPrimary.300" },
+    },
+  },
 });
 
 export default theme;

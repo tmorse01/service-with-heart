@@ -1,53 +1,347 @@
-import React from "react";
-import { Box, Flex, Button, Heading, Image, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  Button,
+  Heading,
+  Image,
+  Stack,
+  Text,
+  Link,
+} from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import "./../../App.css";
 import { useNavigate } from "react-router-dom";
+import Testimonial from "../shared/Testimonial";
+import { featuredTestimonials } from "../../data/testimonials";
+
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <Box p={[8, 8, 24]}>
-      <Flex
-        direction="column"
+    <Box as="main">
+      {/* 1. Hero */}
+      <Box
+        position="relative"
+        minH={{ base: "50vh", md: "60vh" }}
+        backgroundImage="url(/meredith-vortex.jpeg)"
+        backgroundSize="cover"
+        backgroundPosition="center"
+        display="flex"
         alignItems="center"
         justifyContent="center"
-        gap={6}
       >
-        <Heading as="h2" size="3xl">
-          Rev. Meredith Ann Murray
-        </Heading>
-        <Heading as="h4" size="md">
-          Welcome!
-        </Heading>
-        <Heading as="h3" size="lg">
-          Integrated Energy Therapy Advanced Level Practitioner
-        </Heading>
-        <Stack direction="row" spacing={4} align="center">
-          <Button colorScheme="teal" onClick={(e) => navigate("/contact")}>
-            Schedule an Appointment
-          </Button>
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            onClick={(e) => navigate("/iet")}
+        <Box
+          className="hero-overlay"
+          position="absolute"
+          inset={0}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        />
+        <Flex
+          className="hero-content"
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          gap={5}
+          position="relative"
+          zIndex={1}
+          p={8}
+          color="fg.inverted"
+          textAlign="center"
+        >
+          <Heading
+            as="h2"
+            size={{ base: "2xl", md: "3xl" }}
+            textShadow="0 1px 3px rgba(0,0,0,0.5)"
           >
-            Find Out More
-          </Button>
-        </Stack>
-        <Image
-          objectFit="cover"
-          objectPosition="center"
-          width={{ base: "200px", md: "300px", lg: "500px" }}
-          src={"/Heart_Logo.jpg"}
-          alt="Heart Logo"
-        />
-        <Image
-          objectFit="cover"
-          objectPosition="center"
-          width={{ base: "400px", md: "600px", lg: "800px" }}
-          src={"/purpleflower.jpg"}
-          alt="Purple Flower"
-        />
-      </Flex>
+            Rev. Meredith Ann Murray
+          </Heading>
+          <Text fontSize={{ base: "md", md: "lg" }} opacity={0.95}>
+            Welcome!
+          </Text>
+          <Heading
+            as="h3"
+            size={{ base: "md", md: "lg" }}
+            fontWeight="medium"
+            textShadow="0 1px 2px rgba(0,0,0,0.5)"
+          >
+            Integrated Energy Therapy Advanced Level Practitioner
+          </Heading>
+          <Stack
+            direction={{ base: "column", sm: "row" }}
+            spacing={4}
+            align="center"
+          >
+            <Button
+              colorScheme="teal"
+              size="lg"
+              onClick={() => navigate("/contact")}
+              _hover={{ transform: "translateY(-1px)" }}
+              transition="transform 0.2s"
+            >
+              Schedule an Appointment
+            </Button>
+            <Button
+              colorScheme="teal"
+              variant="outline"
+              size="lg"
+              borderColor="fg.inverted"
+              color="fg.inverted"
+              _hover={{ bg: "whiteAlpha.300" }}
+              onClick={() => navigate("/iet")}
+            >
+              Find Out More
+            </Button>
+          </Stack>
+        </Flex>
+      </Box>
+
+      {/* 2. Intro — Logo + Welcome */}
+      <Box py={{ base: 8, md: 10 }} px={{ base: 4, md: 6 }} bg="bg.subtle">
+        <Container maxW="container.lg">
+          <Flex direction="column" align="center" textAlign="center" gap={4}>
+            <Image
+              objectFit="contain"
+              width={{ base: "120px", md: "160px" }}
+              src="/Heart_Logo.jpg"
+              alt="Heart Logo - Service With Heart"
+            />
+            <Heading as="h2" size="lg" color="fg.default">
+              Service With Heart
+            </Heading>
+            <Text fontSize="lg" color="fg.muted" maxW="560px">
+              Healing with the energy of angels. Remote IET sessions from
+              Ajijic, Mexico.
+            </Text>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* 3. About Meredith — Image Left, Text Right */}
+      <Box py={{ base: 8, md: 12, lg: 16 }} px={{ base: 4, md: 6 }} bg="bg.default">
+        <Container maxW="container.xl">
+          <Flex
+            direction={{ base: "column", lg: "row" }}
+            align={{ lg: "center" }}
+            gap={{ base: 6, lg: 10 }}
+          >
+            <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
+              <Box
+                position="relative"
+                width="100%"
+                overflow="hidden"
+                borderRadius="lg"
+                boxShadow="md"
+                sx={{ aspectRatio: "4/3" }}
+              >
+                <Image
+                  src="/meredith-big-tree.jpeg"
+                  alt="Meredith in nature"
+                  objectFit="cover"
+                  objectPosition="center"
+                  position="absolute"
+                  inset={0}
+                  width="100%"
+                  height="100%"
+                />
+              </Box>
+            </Box>
+            <Box flex={1}>
+              <Heading as="h2" size="xl" mb={4}>
+                About Meredith
+              </Heading>
+              <Text color="fg.muted" lineHeight="tall" mb={4}>
+                Meredith&apos;s passion is Peace. She has been an ordained
+                Interfaith Minister of Spiritual Peacemaking since 2006 and is
+                an Advanced Level IET Practitioner. She officiates at weddings,
+                conducts memorial services, and brings healing through angelic
+                energy.
+              </Text>
+              <Button
+                as={RouterLink}
+                to="/about"
+                colorScheme="teal"
+                variant="outline"
+                size="sm"
+              >
+                Learn more about Meredith →
+              </Button>
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* 4. IET Preview — Text Left, Image Right */}
+      <Box
+        py={{ base: 8, md: 12, lg: 16 }}
+        px={{ base: 4, md: 6 }}
+        bg="bg.subtle"
+      >
+        <Container maxW="container.xl">
+          <Flex
+            direction={{ base: "column", lg: "row-reverse" }}
+            align={{ lg: "center" }}
+            gap={{ base: 6, lg: 10 }}
+          >
+            <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
+              <Box
+                position="relative"
+                width="100%"
+                overflow="hidden"
+                borderRadius="lg"
+                boxShadow="md"
+                sx={{ aspectRatio: "4/3" }}
+              >
+                <Image
+                  src="/vortex1.jpeg"
+                  alt="Peaceful garden"
+                  objectFit="cover"
+                  objectPosition="center"
+                  position="absolute"
+                  inset={0}
+                  width="100%"
+                  height="100%"
+                />
+              </Box>
+            </Box>
+            <Box flex={1}>
+              <Heading as="h2" size="xl" mb={4}>
+                What is IET?
+              </Heading>
+              <Text color="fg.muted" lineHeight="tall" mb={4}>
+                IET is &quot;Healing with the Energy of Angels&quot; — a gentle
+                energy therapy that uses angelic energy to release limiting
+                patterns from your past and empower your present. Sessions are
+                conducted remotely for 45–60 minutes while you rest undisturbed
+                at home.
+              </Text>
+              <Button
+                as={RouterLink}
+                to="/iet"
+                colorScheme="teal"
+                variant="outline"
+                size="sm"
+              >
+                Learn more about IET →
+              </Button>
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* 5. Testimonials — Text Only */}
+      <Box py={{ base: 8, md: 12, lg: 16 }} px={{ base: 4, md: 6 }} bg="bg.default">
+        <Container maxW="container.xl">
+          <Flex direction="column" align="center" gap={8}>
+            <Heading as="h2" size="xl">
+              What Clients Say
+            </Heading>
+            <Stack
+              direction={{ base: "column", md: "row" }}
+              spacing={6}
+              justify="center"
+              align="stretch"
+              width="100%"
+              maxW="900px"
+            >
+              {featuredTestimonials.map((item, index) => (
+                <Testimonial key={index} name={item.name} text={item.text} />
+              ))}
+            </Stack>
+            <Link
+              as={RouterLink}
+              to="/testimonials"
+              color="accent.solid"
+              fontWeight="semibold"
+            >
+              Read all testimonials →
+            </Link>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* 6. Mexico Preview — Image Left, Text Right */}
+      <Box
+        py={{ base: 8, md: 12, lg: 16 }}
+        px={{ base: 4, md: 6 }}
+        bg="bg.subtle"
+      >
+        <Container maxW="container.xl">
+          <Flex
+            direction={{ base: "column", lg: "row" }}
+            align={{ lg: "center" }}
+            gap={{ base: 6, lg: 10 }}
+          >
+            <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
+              <Box
+                position="relative"
+                width="100%"
+                overflow="hidden"
+                borderRadius="lg"
+                boxShadow="md"
+                sx={{ aspectRatio: "4/3" }}
+              >
+                <Image
+                  src="/Poncitlan.jpeg"
+                  alt="Poncitlan, Mexico"
+                  objectFit="cover"
+                  objectPosition="center"
+                  position="absolute"
+                  inset={0}
+                  width="100%"
+                  height="100%"
+                />
+              </Box>
+            </Box>
+            <Box flex={1}>
+              <Heading as="h2" size="xl" mb={4}>
+                Life in Mexico
+              </Heading>
+              <Text color="fg.muted" lineHeight="tall" mb={4}>
+                Meredith has lived in Mexico since May 2020. She offers a{" "}
+                <strong>Free 15-minute phone call</strong> to connect and answer
+                your questions about life in Ajijic and the Lake Chapala area.
+              </Text>
+              <Button
+                as={RouterLink}
+                to="/mexico"
+                colorScheme="teal"
+                variant="outline"
+                size="sm"
+              >
+                Learn more about Mexico →
+              </Button>
+            </Box>
+          </Flex>
+        </Container>
+      </Box>
+
+      {/* 7. Final CTA */}
+      <Box py={{ base: 10, md: 14 }} px={{ base: 4, md: 6 }} bg="bg.default">
+        <Container maxW="container.md">
+          <Flex direction="column" align="center" textAlign="center" gap={5}>
+            <Image
+              objectFit="contain"
+              width={{ base: "100px", md: "120px" }}
+              src="/Heart_Logo.jpg"
+              alt="Service With Heart"
+            />
+            <Heading as="h2" size="lg" color="fg.default">
+              Ready to begin your healing journey?
+            </Heading>
+            <Button
+              colorScheme="teal"
+              size="lg"
+              onClick={() => navigate("/contact")}
+              _hover={{ transform: "translateY(-1px)" }}
+              transition="transform 0.2s"
+            >
+              Schedule an Appointment
+            </Button>
+          </Flex>
+        </Container>
+      </Box>
     </Box>
   );
 };
