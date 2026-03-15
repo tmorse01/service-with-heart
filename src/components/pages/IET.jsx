@@ -17,6 +17,21 @@ const IET = () => {
       >
         <Box p={[4, 4, 8]} gap={4} width={["100%", "100%", "50%"]}>
           <Stack spacing="24px">
+            <Box
+              alignSelf="flex-start"
+              width="280px"
+              aspectRatio={1}
+              borderRadius="full"
+              overflow="hidden"
+            >
+              <Image
+                src="/IETlogo-final.jpg"
+                alt="Integrated Energy Therapy logo"
+                width="100%"
+                height="100%"
+                objectFit="contain"
+              />
+            </Box>
             <Heading as="h1" size="3xl">
               What is Integrated Energy Therapy?
             </Heading>

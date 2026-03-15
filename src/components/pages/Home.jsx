@@ -224,16 +224,11 @@ const Home = () => {
             transition={sectionTransition}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
-              <AspectRatio
-                ratio={4 / 3}
-                overflow="hidden"
-                borderRadius="lg"
-                boxShadow="md"
-              >
+              <AspectRatio ratio={1} maxW="280px" borderRadius="full" overflow="hidden" boxShadow="md">
                 <Image
                   src="/IETlogo-final.jpg"
                   alt="Integrated Energy Therapy logo"
-                  fit="cover"
+                  fit="contain"
                   align="center"
                 />
               </AspectRatio>
