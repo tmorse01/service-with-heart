@@ -23,21 +23,27 @@ const VORTEX_SLIDES = [
     src: "/meredith-vortex.jpeg",
     alt: "Meredith at the Saint Germaine vortex",
   },
+  {
+    src: "/meredith-big-tree.jpeg",
+    alt: "Meredith by a large tree",
+  },
   { src: "/vortex1.jpeg", alt: "Saint Germaine vortex" },
   { src: "/vortex2.jpeg", alt: "Saint Germaine vortex" },
   { src: "/vortex3.jpeg", alt: "Saint Germaine vortex" },
-  { src: "/vortex4.jpeg", alt: "Saint Germaine vortex" },
   { src: "/vortex5.jpeg", alt: "Saint Germaine vortex" },
+  { src: "/garden.jpeg", alt: "Garden on the north shore" },
+  { src: "/garden-gnomes.jpeg", alt: "Garden with gnomes" },
+  { src: "/gnome.jpeg", alt: "Garden gnome" },
+  { src: "/castle1.jpeg", alt: "Castle on the north shore" },
+  { src: "/castle2.jpeg", alt: "Castle on Lake Chapala" },
+  { src: "/castle3.jpeg", alt: "Castle on the north shore" },
+  { src: "/lunch.jpeg", alt: "Lunch on the north shore of Lake Chapala" },
+  { src: "/castle.jpeg", alt: "Castle on Lake Chapala" },
+  { src: "/Poncitlan.jpeg", alt: "Poncitlan area" },
 ];
 
 const AJIJIC_SLIDES = [
   { src: "/ajijic.jpeg", alt: "Ajijic on the north shore of Lake Chapala" },
-  { src: "/meredith-big-tree.jpeg", alt: "Meredith by a large tree" },
-  { src: "/garden.jpeg", alt: "Garden on the north shore" },
-  { src: "/garden-gnomes.jpeg", alt: "Garden with gnomes" },
-  { src: "/gnome.jpeg", alt: "Garden gnome" },
-  { src: "/lunch.jpeg", alt: "Lunch on the north shore of Lake Chapala" },
-  { src: "/Poncitlan.jpeg", alt: "Poncitlan area" },
 ];
 
 const CarouselActionButton = forwardRef(function CarouselActionButton(
