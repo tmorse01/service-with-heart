@@ -119,7 +119,7 @@ const PhoneBlock = ({ inDrawer = false }) => (
 );
 
 const Header = () => {
-  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -147,7 +147,7 @@ const Header = () => {
       bg="bg.subtle"
       color="fg.default"
       py={2}
-      px={{ base: 3, md: 6 }}
+      px={{ base: 3, lg: 6 }}
       position="sticky"
       top={0}
       zIndex="sticky"
@@ -186,8 +186,8 @@ const Header = () => {
           as="h1"
           size="lg"
           color="fg.default"
-          minW={0}
-          flex={{ base: "1", md: 1 }}
+          minW={{ base: 0, lg: "min-content" }}
+          flex={{ base: "1", lg: "0 0 auto" }}
           noOfLines={1}
           title="Service With Heart"
         >
@@ -208,7 +208,7 @@ const Header = () => {
               aria-label="Main"
               wrap="nowrap"
               align="center"
-              flex={1}
+              flex="1 1 auto"
               justify="center"
               minW={0}
             >
@@ -228,7 +228,7 @@ const Header = () => {
                 </Link>
               ))}
             </Flex>
-            <Flex flex={1} justify="flex-end" minW={0}>
+            <Flex flex="0 0 auto" minW="min-content" justify="flex-end">
               <PhoneBlock />
             </Flex>
           </>
