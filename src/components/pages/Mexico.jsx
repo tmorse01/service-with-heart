@@ -15,7 +15,7 @@ import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 const INTRO_PHOTOS = [
   { src: "/ajijic.jpeg", alt: "View of Ajijic, Mexico" },
-  { src: "/meredith-big-tree.jpeg", alt: "Meredith by a large tree" },
+  { src: "/lake2.jpeg", alt: "View of Lake Chapala" },
 ];
 
 const VORTEX_SLIDES = [
