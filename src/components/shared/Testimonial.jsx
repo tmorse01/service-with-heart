@@ -1,17 +1,80 @@
-import { Box, Avatar, Text, Flex } from "@chakra-ui/react";
+import { useState } from "react";
+import { Box, Avatar, Text, Flex, Button } from "@chakra-ui/react";
 
-const Testimonial = ({ name, text }) => {
+const TRUNCATE_LENGTH = 220;
+const CARD_MIN_HEIGHT = 260;
+
+/** Fun Chakra UI palette colors for avatar fallbacks (cycles by index). */
+export const AVATAR_PALETTES = [
+  "pink",
+  "purple",
+  "blue",
+  "cyan",
+  "teal",
+  "green",
+  "orange",
+  "yellow",
+  "red",
+];
+
+const Testimonial = ({ name, text, colorPalette }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const isLong = text.length > TRUNCATE_LENGTH;
+
   return (
-    <Box p={6} borderWidth={1} borderRadius="lg" boxShadow="lg" maxW="400px">
-      <Flex align="center">
-        <Avatar size="md" name={name} />
+    <Box
+      p={6}
+      borderWidth={1}
+      borderLeftWidth="4px"
+      borderLeftColor="accent.muted"
+      borderRadius="lg"
+      boxShadow="lg"
+      maxW={{ base: "100%", sm: "400px" }}
+      minH={`${CARD_MIN_HEIGHT}px`}
+      bg="bg.default"
+      display="flex"
+      flexDirection="column"
+      transition="transform 0.2s ease, box-shadow 0.2s ease"
+      _hover={{
+        transform: "translateY(-2px)",
+        boxShadow: "xl",
+      }}
+    >
+      <Flex align="center" flexShrink={0}>
+        <Avatar.Root size="md" colorPalette={colorPalette ?? "gray"}>
+          <Avatar.Fallback name={name} />
+        </Avatar.Root>
         <Text ml={3} fontWeight="bold">
           {name}
         </Text>
       </Flex>
-      <Text mt={3} fontStyle="italic" quotes='"“"' fontSize="sm">
+      <Text
+        mt={3}
+        flex="1 1 auto"
+        minH={0}
+        fontStyle="italic"
+        quotes={'" "'}
+        fontSize="md"
+        lineHeight="tall"
+        color="fg.muted"
+        lineClamp={isExpanded ? undefined : 4}
+        overflow={isExpanded ? "visible" : "hidden"}
+      >
         {text}
       </Text>
+      {isLong && (
+        <Button
+          size="sm"
+          variant="link"
+          colorPalette="tealPrimary"
+          mt={3}
+          flexShrink={0}
+          alignSelf="flex-start"
+          onClick={() => setIsExpanded((e) => !e)}
+        >
+          {isExpanded ? "Show less" : "Show more"}
+        </Button>
+      )}
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Stack,
-  Divider,
+  Separator,
   Image,
   Box,
   Flex,
@@ -17,14 +17,14 @@ const IET = () => {
       >
         <Box p={[4, 4, 8]} gap={4} width={["100%", "100%", "50%"]}>
           <Stack spacing="24px">
-            <Heading as="h2" size="3xl">
+            <Heading as="h1" size="3xl">
               What is Integrated Energy Therapy?
             </Heading>
-            <Divider />
-            <Heading as="h4" size="xl">
+            <Separator />
+            <Heading as="h2" size="xl">
               From LearnIET.com:
             </Heading>
-            <Text>
+            <Text lineHeight="tall" color="fg.muted">
               <strong>We call it “Healing with the Energy of Angels” </strong>
               Integrated Energy Therapy® (IET®) is one of the next generation –
               hands on – power energy therapy systems that get the “issues out
@@ -39,10 +39,10 @@ const IET = () => {
               vision of “integrating the pain of the past, into the power of the
               present, to bring about the joy of the future”.
             </Text>
-            <Heading as="h4" size="xl">
+            <Heading as="h2" size="xl">
               What is an IET Session?
             </Heading>
-            <Text>
+            <Text lineHeight="tall" color="fg.muted">
               <strong>
                 Meredith conducts all of the IET sessions remotely. You are
                 invited to rest undisturbed for 45 minutes to 1 hour in the
@@ -50,7 +50,7 @@ const IET = () => {
                 from her home office.
               </strong>
             </Text>
-            <Text>
+            <Text lineHeight="tall" color="fg.muted">
               Integrated Energy Therapy® (IET) sessions use angelic energy to
               work directly with your body’s cellular memory and energy field to
               get the 'issues out of your tissues' for good. IET helps you to
@@ -64,7 +64,9 @@ const IET = () => {
           <Image
             src={"/green_candles.jpg"}
             alt="Green candles"
-            objectFit="cover"
+            width="100%"
+            maxH={["480px", "520px", "620px"]}
+            objectFit="contain"
             borderRadius="md"
           />
         </Box>
