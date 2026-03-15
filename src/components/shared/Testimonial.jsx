@@ -54,7 +54,7 @@ const Testimonial = ({ name, text, colorPalette }) => {
         minH={0}
         fontStyle="italic"
         quotes={'" "'}
-        fontSize="sm"
+        fontSize="md"
         lineHeight="tall"
         color="fg.muted"
         lineClamp={isExpanded ? undefined : 4}

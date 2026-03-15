@@ -10,7 +10,7 @@ import {
   AspectRatio,
   IconButton,
 } from "@chakra-ui/react";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const INTRO_PHOTOS = [
   { src: "/Poncitlan.jpeg", alt: "View of Poncitlan, Mexico" },
@@ -40,7 +40,7 @@ const CAROUSEL_SLIDES = [
 const Mexico = () => {
   return (
     <Box p={[8, 8, 24]} align="center">
-      <Heading as="h2" size="2xl" marginBottom={6}>
+      <Heading as="h1" size="2xl" marginBottom={6}>
         Learn more about life in Mexico
       </Heading>
 
@@ -65,7 +65,7 @@ const Mexico = () => {
             </AspectRatio>
           </Box>
           <Box flex={1}>
-            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall">
+            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall" color="fg.muted">
               Meredith offers one <strong>FREE 15-minute phone call</strong> to
               connect with you and answer some of your questions using her own
               experiences from living in Mexico since May 2020.
@@ -93,7 +93,7 @@ const Mexico = () => {
             </AspectRatio>
           </Box>
           <Box flex={1}>
-            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall">
+            <Text fontSize={{ base: "md", md: "lg" }} lineHeight="tall" color="fg.muted">
               If that time is insufficient, she will schedule up to a one-hour
               long conversation with you for $55 U.S. (payable in advance on
               PayPal). Make a list of your questions prior to connecting to make
@@ -109,14 +109,26 @@ const Mexico = () => {
         <Carousel.ItemGroup>
           {CAROUSEL_SLIDES.map((slide, index) => (
             <Carousel.Item key={slide.src} index={index}>
-              <AspectRatio ratio={4 / 3} overflow="hidden" borderRadius="lg" boxShadow="md">
+              <Box
+                position="relative"
+                overflow="hidden"
+                borderRadius="lg"
+                boxShadow="md"
+                sx={{
+                  aspectRatio: { base: "2/1", md: "16/9" },
+                }}
+              >
                 <Image
                   src={slide.src}
                   alt={slide.alt}
                   fit="cover"
                   align="center"
+                  position="absolute"
+                  inset={0}
+                  width="100%"
+                  height="100%"
                 />
-              </AspectRatio>
+              </Box>
             </Carousel.Item>
           ))}
         </Carousel.ItemGroup>
@@ -124,7 +136,7 @@ const Mexico = () => {
         <Carousel.Control justifyContent="center" gap={4} mt={3}>
           <Carousel.PrevTrigger asChild>
             <IconButton size="sm" variant="outline" aria-label="Previous image">
-              <LuChevronLeft />
+              <FaChevronLeft />
             </IconButton>
           </Carousel.PrevTrigger>
 
@@ -132,7 +144,7 @@ const Mexico = () => {
 
           <Carousel.NextTrigger asChild>
             <IconButton size="sm" variant="outline" aria-label="Next image">
-              <LuChevronRight />
+              <FaChevronRight />
             </IconButton>
           </Carousel.NextTrigger>
         </Carousel.Control>
@@ -151,7 +163,7 @@ const Mexico = () => {
           <Heading as="h3" size="lg" marginBottom="0.5rem">
             Saint Germaine vortex
           </Heading>
-          <Text>
+          <Text lineHeight="tall" color="fg.muted">
             Meredith leads tours to the Saint Germaine vortex in the Lake
             Chapala area. The gallery above includes photos from the vortex—a
             powerful spot for energy work and reflection.
@@ -161,7 +173,7 @@ const Mexico = () => {
           <Heading as="h3" size="lg" marginBottom="0.5rem">
             Life in Ajijic
           </Heading>
-          <Text>
+          <Text lineHeight="tall" color="fg.muted">
             Meredith has called Ajijic, on the north shore of Lake Chapala, home
             since May 2020. She loves sharing what daily life is like here—the
             community, the climate, and the chance to slow down and enjoy
@@ -172,7 +184,7 @@ const Mexico = () => {
           <Heading as="h3" size="lg" marginBottom="0.5rem">
             Day tours of the north shore
           </Heading>
-          <Text>
+          <Text lineHeight="tall" color="fg.muted">
             She also offers day tours along the north shore of Lake
             Chapala—castles, gardens, lunch by the lake, and the kind of spots
             that make this region special. Reach out to learn more and see the

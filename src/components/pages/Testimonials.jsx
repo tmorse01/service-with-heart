@@ -35,7 +35,7 @@ const Testimonials = () => {
       <Container maxW="container.xl" ref={sectionRef}>
         <Flex direction="column" align="center" textAlign="center" gap={4} mb={10}>
           <Heading
-            as="h2"
+            as="h1"
             size="3xl"
             className={`testimonials-heading-enter ${visible ? "visible" : ""}`}
           >
@@ -43,6 +43,7 @@ const Testimonials = () => {
           </Heading>
           <Text
             fontSize="lg"
+            lineHeight="tall"
             color="fg.muted"
             className={`testimonials-heading-enter ${visible ? "visible" : ""}`}
             sx={{ animationDelay: "0.05s" }}

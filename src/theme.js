@@ -7,6 +7,24 @@ import {
 const customThemeConfig = defineConfig({
   theme: {
     tokens: {
+      fonts: {
+        body: { value: '"Source Sans 3", sans-serif' },
+        heading: { value: '"Source Sans 3", sans-serif' },
+      },
+      letterSpacings: {
+        nav: { value: "0.05em" },
+      },
+      /* Generous font sizes for older users and mobile */
+      fontSizes: {
+        xs: { value: "0.875rem" },
+        sm: { value: "1rem" },
+        md: { value: "1.125rem" },
+        lg: { value: "1.25rem" },
+        xl: { value: "1.5rem" },
+        "2xl": { value: "1.875rem" },
+        "3xl": { value: "2.25rem" },
+        "4xl": { value: "3rem" },
+      },
       colors: {
         tealPrimary: {
           50: { value: "#E6FFFA" },

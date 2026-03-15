@@ -12,7 +12,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
-import { FiPhone, FiMenu } from "react-icons/fi";
+import { FaPhone, FaBars } from "react-icons/fa";
 import { NavLink, useLocation } from "react-router-dom";
 
 const NAV_ITEMS = [
@@ -28,8 +28,8 @@ const PHONE = "332-849-4644";
 
 const linkStyles = {
   color: "fg.default",
-  fontWeight: "bold",
-  fontSize: "xl",
+  fontWeight: "semibold",
+  fontSize: "lg",
   textDecoration: "none",
   _hover: { color: "accent.solid" },
   _focus: { outline: "none" },
@@ -54,7 +54,17 @@ const NavLinks = ({ isMobile = false, onLinkClick, firstLinkRef }) => (
         end={end}
         {...linkStyles}
         {...(isMobile
-          ? { mb: 4, display: "block", onClick: onLinkClick }
+          ? {
+              display: "block",
+              onClick: onLinkClick,
+              py: 3,
+              px: 2,
+              mb: 1,
+              minH: "44px",
+              fontSize: "lg",
+              borderRadius: "md",
+              _active: { bg: "bg.muted" },
+            }
           : { mr: 4 })}
         sx={{ "&.active": activeLinkStyles }}
       >
@@ -66,7 +76,7 @@ const NavLinks = ({ isMobile = false, onLinkClick, firstLinkRef }) => (
 
 const PhoneBlock = ({ inDrawer = false }) => (
   <Flex
-    fontSize="2xl"
+    fontSize="xl"
     direction="row"
     color="fg.default"
     gap={2}
@@ -75,7 +85,7 @@ const PhoneBlock = ({ inDrawer = false }) => (
       ? { mt: 4, pt: 4, borderTopWidth: 1, borderColor: "border.default" }
       : {})}
   >
-    <Icon as={FiPhone} boxSize={5} />
+    <Icon as={FaPhone} boxSize={5} />
     <Text as="a" href={`tel:${PHONE.replace(/-/g, "")}`}>
       {PHONE}
     </Text>
@@ -123,7 +133,7 @@ const Header = () => {
         color="fg.default"
         px={3}
         py={1.5}
-        fontWeight="bold"
+        fontWeight="semibold"
         borderRadius="md"
         zIndex="dropdown"
         _focus={{ left: 4 }}
@@ -132,8 +142,23 @@ const Header = () => {
         Skip to main content
       </Link>
 
-      <Flex align="center" justify="space-between" py={1} px={0}>
-        <Heading as="h1" size="lg" color="fg.default">
+      <Flex
+        align="center"
+        justify="space-between"
+        py={1}
+        px={0}
+        gap={2}
+        minW={0}
+      >
+        <Heading
+          as="h1"
+          size="lg"
+          color="fg.default"
+          minW={0}
+          flex={{ base: "1", md: 1 }}
+          noOfLines={1}
+          title="Service With Heart"
+        >
           <Link
             as={NavLink}
             to="/"
@@ -146,7 +171,15 @@ const Header = () => {
 
         {isDesktop ? (
           <>
-            <Flex as="nav" aria-label="Main" wrap="wrap" align="center">
+            <Flex
+              as="nav"
+              aria-label="Main"
+              wrap="nowrap"
+              align="center"
+              flex={1}
+              justify="center"
+              minW={0}
+            >
               {NAV_ITEMS.map(({ to, label, end }) => (
                 <Link
                   key={to}
@@ -163,31 +196,45 @@ const Header = () => {
                 </Link>
               ))}
             </Flex>
-            <PhoneBlock />
+            <Flex flex={1} justify="flex-end" minW={0}>
+              <PhoneBlock />
+            </Flex>
           </>
         ) : (
-          <>
-            <IconButton
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              icon={<Icon as={FiMenu} boxSize={6} />}
-              variant="ghost"
-              color="fg.default"
-              size="lg"
-              onClick={onOpen}
-              _hover={{ bg: "bg.muted", color: "accent.solid" }}
-              _focus={{ outline: "none" }}
-            />
             <Drawer.Root
               open={isOpen}
-              onOpenChange={(e) => (e.open ? onOpen() : onClose())}
+              onOpenChange={({ open }) => (open ? onOpen() : onClose())}
               placement="end"
               size="xs"
             >
+              <Drawer.Trigger asChild>
+                <IconButton
+                  type="button"
+                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isOpen}
+                  variant="ghost"
+                  colorPalette="tealPrimary"
+                  size="lg"
+                  flexShrink={0}
+                  minW={10}
+                  minH={10}
+                  _hover={{ bg: "bg.muted", color: "accent.solid" }}
+                  _focus={{ outline: "none" }}
+                  _active={{ bg: "bg.muted" }}
+                  sx={{ "& svg": { pointerEvents: "none" } }}
+                >
+                  <FaBars />
+                </IconButton>
+              </Drawer.Trigger>
               <Portal>
                 <Drawer.Backdrop />
                 <Drawer.Positioner>
-                  <Drawer.Content bg="bg.subtle" color="fg.default" height="100%">
+                  <Drawer.Content
+                    bg="bg.subtle"
+                    color="fg.default"
+                    height="100%"
+                    width="min(85vw, 280px)"
+                  >
                     <Drawer.CloseTrigger
                       aria-label="Close menu"
                       color="fg.default"
@@ -204,10 +251,10 @@ const Header = () => {
                       mb={2}
                       borderBottomWidth="1px"
                       borderColor="border.default"
-                      fontSize="sm"
+                      fontSize="md"
                       fontWeight="semibold"
                       color="fg.muted"
-                      letterSpacing="wider"
+                      letterSpacing="nav"
                       textTransform="uppercase"
                     >
                       Menu
@@ -226,7 +273,6 @@ const Header = () => {
                 </Drawer.Positioner>
               </Portal>
             </Drawer.Root>
-          </>
         )}
       </Flex>
     </Box>

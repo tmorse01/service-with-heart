@@ -17,8 +17,8 @@ import { useNavigate } from "react-router-dom";
 import Testimonial, { AVATAR_PALETTES } from "../shared/Testimonial";
 import { featuredTestimonials } from "../../data/testimonials";
 
-const MotionBox = motion(Box);
-const MotionFlex = motion(Flex);
+const MotionBox = motion.create(Box);
+const MotionFlex = motion.create(Flex);
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -70,7 +70,7 @@ const Home = () => {
         >
           <MotionBox variants={fadeUp} transition={sectionTransition}>
           <Heading
-            as="h2"
+            as="h1"
             size={{ base: "2xl", md: "3xl" }}
             textShadow="0 1px 3px rgba(0,0,0,0.5)"
           >
@@ -84,7 +84,7 @@ const Home = () => {
           </MotionBox>
           <MotionBox variants={fadeUp} transition={sectionTransition}>
           <Heading
-            as="h3"
+            as="h2"
             size={{ base: "md", md: "lg" }}
             fontWeight="medium"
             textShadow="0 1px 2px rgba(0,0,0,0.5)"

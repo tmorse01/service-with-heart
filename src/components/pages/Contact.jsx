@@ -64,19 +64,19 @@ const Contact = () => {
         justifyContent="center"
         gap={6}
       >
-        <Heading as="h2" size="3xl">
+        <Heading as="h1" size="3xl">
           Rev. Meredith Ann Murray, M. Div.
         </Heading>
-        <Heading as="h3" size="xl">
+        <Heading as="h2" size="xl">
           Ajijic, Jalisco, Mexico
         </Heading>
-        <Heading as="h3" size="xl">
+        <Heading as="h3" size="lg">
           Hours
         </Heading>
-        <Text>Monday - Sunday: 9am - 9pm</Text>
-        <Heading as="h5" size="sm">
+        <Text lineHeight="tall" color="fg.muted">Monday - Sunday: 9am - 9pm</Text>
+        <Text fontWeight="semibold" fontSize="md">
           332-849-4644 for texts (only) and for use with WhatsApp
-        </Heading>
+        </Text>
         <Box width={{ base: "100%", lg: "400px" }}>
           <Formik
             initialValues={initialValues}

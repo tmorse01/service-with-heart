@@ -1,4 +1,14 @@
 /* Minimal global reset - Chakra handles component styling */
+/* Larger root font-size for older users and mobile readability */
+html {
+  font-size: 18px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 19px;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -9,6 +19,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 #root {
