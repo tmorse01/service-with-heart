@@ -175,7 +175,7 @@ const Home = () => {
                 boxShadow="md"
               >
                 <Image
-                  src="/meredith-vortex.jpeg"
+                  src="/vortex/meredith-vortex.jpeg"
                   alt="Meredith at the Saint Germaine vortex"
                   fit="cover"
                   align="center"
@@ -224,7 +224,13 @@ const Home = () => {
             transition={sectionTransition}
           >
             <Box flex={{ lg: "0 0 42%" }} maxW={{ lg: "520px" }}>
-              <AspectRatio ratio={1} maxW="280px" borderRadius="full" overflow="hidden" boxShadow="md">
+              <AspectRatio
+                ratio={1}
+                maxW="280px"
+                borderRadius="full"
+                overflow="hidden"
+                boxShadow="md"
+              >
                 <Image
                   src="/IETlogo-final.jpg"
                   alt="Integrated Energy Therapy logo"
