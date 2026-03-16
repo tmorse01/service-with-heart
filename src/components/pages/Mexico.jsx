@@ -63,6 +63,12 @@ const AJIJIC_SLIDES = [
   { src: "/ajijic/IMG_E4335.JPG", alt: "Life In Ajijic" },
 ];
 
+/** Returns the thumbnail URL for a slide (smaller asset for indicator strip). */
+function getThumbSrc(src) {
+  const lastSlash = src.lastIndexOf("/");
+  return `${src.slice(0, lastSlash + 1)}thumb/${src.slice(lastSlash + 1)}`;
+}
+
 const LAKESIDE_TOUR_SLIDES = [
   { src: "/lakeside-tour/Chapala 1.JPG", alt: "Lake Chapala lakeside tour" },
   { src: "/lakeside-tour/Chapala 2.JPG", alt: "Lake Chapala lakeside tour" },
@@ -269,12 +275,15 @@ const Mexico = () => {
                 <Image
                   w="20"
                   aspectRatio="16/9"
-                  src={slide.src}
+                  src={getThumbSrc(slide.src)}
                   alt={slide.alt}
                   fit="cover"
                   borderRadius="md"
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.src = slide.src;
+                  }}
                 />
               </Carousel.Indicator>
             ))}
@@ -365,12 +374,15 @@ const Mexico = () => {
                 <Image
                   w="20"
                   aspectRatio="16/9"
-                  src={slide.src}
+                  src={getThumbSrc(slide.src)}
                   alt={slide.alt}
                   fit="cover"
                   borderRadius="md"
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.src = slide.src;
+                  }}
                 />
               </Carousel.Indicator>
             ))}
@@ -464,12 +476,15 @@ const Mexico = () => {
                 <Image
                   w="20"
                   aspectRatio="16/9"
-                  src={slide.src}
+                  src={getThumbSrc(slide.src)}
                   alt={slide.alt}
                   fit="cover"
                   borderRadius="md"
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.src = slide.src;
+                  }}
                 />
               </Carousel.Indicator>
             ))}
