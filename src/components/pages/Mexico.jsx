@@ -9,6 +9,7 @@ import {
   Image,
   AspectRatio,
   IconButton,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { forwardRef } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
@@ -43,6 +44,13 @@ const VORTEX_SLIDES = [
   },
   { src: "/vortex/castle.jpeg", alt: "Castle on Lake Chapala" },
   { src: "/vortex/Poncitlan.jpeg", alt: "Poncitlan area" },
+];
+
+/** YouTube video IDs for the Mexico page showcase (embed URLs use /embed/:id). */
+const MEXICO_VIDEO_SHOWCASE = [
+  { id: "VBnif_6_P2M", title: "Life in Mexico — showcase video 1" },
+  { id: "Q9xfZEBN-KM", title: "Life in Mexico — showcase video 2" },
+  { id: "DEhY3nrr7s8", title: "Life in Mexico — showcase video 3" },
 ];
 
 const AJIJIC_SLIDES = [
@@ -198,6 +206,71 @@ const Mexico = () => {
           </Box>
         </Flex>
       </Stack>
+
+      <Separator marginTop="2rem" marginBottom="1rem" />
+
+      <Heading as="h2" size="xl" marginBottom={3}>
+        Videos
+      </Heading>
+      <Stack
+        spacing={4}
+        maxW="3xl"
+        mx="auto"
+        mb={6}
+        textAlign="center"
+      >
+        <Text
+          lineHeight="tall"
+          color="fg.muted"
+          fontSize={{ base: "md", md: "lg" }}
+        >
+          These clips are from Bill Dallas Lewis (&ldquo;Bill the Geek&rdquo;)
+          on the Bill Dallas Lewis Channel—same host in each one, all in the
+          spirit of the joys of living in Mexico.
+        </Text>
+        <Text
+          lineHeight="tall"
+          color="fg.muted"
+          fontSize={{ base: "md", md: "lg" }}
+        >
+          Together they touch on Ajijic and Lake Chapala through the lens of
+          tours and getting oriented with Meredith; Meredith&apos;s story as an
+          American in Ajijic—retirement, cost of living, meeting people, and
+          practical tips for life in the area (including what it can be like as
+          a single woman there); and a private lakeside tour that threads
+          Jocotepec, Chapala, and Ajijic so you see more than a typical
+          waterfront loop—useful for visitors and for people who already live
+          lakeside but want a fuller picture of the region.
+        </Text>
+      </Stack>
+      <SimpleGrid
+        columns={{ base: 1, md: 2, lg: 3 }}
+        gap={6}
+        maxW="6xl"
+        mx="auto"
+        mb={2}
+        w="full"
+      >
+        {MEXICO_VIDEO_SHOWCASE.map((video) => (
+          <Box key={video.id} w="full">
+            <AspectRatio
+              ratio={16 / 9}
+              borderRadius="lg"
+              boxShadow="md"
+              overflow="hidden"
+            >
+              <iframe
+                src={`https://www.youtube.com/embed/${video.id}`}
+                title={video.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </AspectRatio>
+          </Box>
+        ))}
+      </SimpleGrid>
 
       <Separator marginTop="2rem" marginBottom="1rem" />
 
